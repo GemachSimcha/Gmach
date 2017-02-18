@@ -1,0 +1,54 @@
+body {
+    direction: rtl;
+    background-color: lightblue;
+    padding-top: 20px;
+    padding-right: 40px;
+    padding-left: 55px;
+}
+
+table, tr {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #dddddd;
+    text-align: right;
+    padding: 8px;
+    width: 100%;
+}
+
+table.insert {
+    width: 400px;
+    border: 0px;
+    border-spacing: 1px;
+    padding: 2px;
+}
+
+td, th, textarea {
+    border: 1px solid #dddddd;
+    text-align: right;
+    padding: 8px;
+}
+
+td.insert{
+    width: 100%;
+}
+
+td.submit {
+    padding-right: 100px;
+}
+
+div {
+    border-radius: 25px;
+    width: 320px;
+    padding: 20px;
+    border: 2px solid purple;
+    right-margin: 105px; 
+}
+
+
+.insert {
+    border-radius: 25px;
+    width: 320px;
+    padding: 20px;
+    border: 2px solid purple;
+    right-margin: 105px; 
+}
