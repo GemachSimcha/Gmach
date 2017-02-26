@@ -11,7 +11,7 @@ require_once("../includes/functions.php");
 
 
 	<title>אנשים</title>
-    <link href="../includes/styles.css" media="all" rel="stylesheet" type="text/css" />
+    <!-- <link href="../includes/styles.css" media="all" rel="stylesheet" type="text/css" /> -->
 
 
 </head>

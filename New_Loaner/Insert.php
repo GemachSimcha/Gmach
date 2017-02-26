@@ -14,8 +14,15 @@ insertPerson($mysqli);
 <html>
 <head>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../includes/styles/bootstrap.min.css">
+    <link href="../includes/styles/styles.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../includes/js/jquery-ui-1.12.1.calendar/jquery-ui.css">
+
+
+
+
 	<title>הוסף אנשים חדשים</title>
-    <link href="../includes/styles.css" media="all" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -73,12 +80,14 @@ insertPerson($mysqli);
                 </td>
             </tr>            
             <tr>
+
                 <td>תאריך ההלואה</td>
-                <td><input type="date" name="DateOfLoan" id="DateOfLoan" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
+                <td><input type="text" name="DateOfLoan" id="datepicker" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                </td>
             </tr>
             <tr>
                 <td>תאריך תשלום(אחרון)</td>
-                <td><input type="date" name="DateOfFinalPayment" id="DateOfFinalPayment"></td>
+                <td><input type="text" name="DateOfFinalPayment" id="datepicker"></td>
             </tr>
             <tr>
                 <td>ערבים</td>
@@ -99,6 +108,27 @@ insertPerson($mysqli);
         </table>
     </form>
     </div>
+
+    <script src="../includes/js/jquery-3.1.1.min.js"></script>
+    <script src="../includes/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="../includes/js/script.js"></script> -->
+    <script type="text/javascript" src="../includes/js/jquery-ui-1.12.1.calendar/jquery-ui.js"></script>
+    <script>
+    $( function() {
+      $( "#datepicker" ).datepicker($.datepicker.regional["he"]);
+    } );
+    // Hover states on the static widgets
+    $( "#dialog-link, #icons li" ).hover(
+        function() {
+            $( this ).addClass( "ui-state-hover" );
+        },
+        function() {
+            $( this ).removeClass( "ui-state-hover" );
+        }
+    );
+    </script>
+
+
     </body>
 </html>
 
