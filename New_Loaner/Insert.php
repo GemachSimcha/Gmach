@@ -17,7 +17,7 @@ insertPerson($mysqli);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../includes/styles/bootstrap.min.css">
     <link href="../includes/styles/styles.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../includes/js/jquery-ui-1.12.1.calendar/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../includes/js/jquery-ui-calendar/jquery-ui.css">
 <!--     <style>$('div.ltr').removeClass("pull-right");</style>
  -->
 
@@ -88,12 +88,12 @@ insertPerson($mysqli);
                             <tr>
 
                                 <td>תאריך ההלואה</td>
-                                <td><input type="text" name="DateOfLoan" id="datepicker" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                                <td><input type="text" name="DateOfLoan" id="datepick1" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
                                 </td>
                             </tr>
                             <tr>
                                 <td>תאריך תשלום(אחרון)</td>
-                                <td><input type="text" name="DateOfFinalPayment" id="datepicker"></td>
+                                <td><input type="text" name="DateOfFinalPayment" id="datepick2"></td>
                             </tr>
                             <tr>
                                 <td>ערבים</td>
@@ -126,22 +126,22 @@ insertPerson($mysqli);
                             </tr>
                             <tr>
                             <td></td>
-                              <td>
-                                
-                                <select name="transaction_Currency" style="width:26%">
-                                  <option value="shekel">שקל</option>
-                                  <option value="dollar">דולר</option>
-                                  <option value="euro">אירו</option>
-                                  <option value="other">אחר</option>
-                                </select>
-                                <select name="transaction_Method" style="width:40%">
-                                  <option value="cash">מזומן</option>
-                                  <option value="check">צ'יק</option>
-                                  <option value="transfer">העברה בנקאית</option>
-                                  <option value="credit-card">אחר</option>
-                                </select>
-                                
-                              </td>
+                            <td>
+                              
+                              <select name="transaction_Currency" style="width:26%">
+                                <option value="shekel">שקל</option>
+                                <option value="dollar">דולר</option>
+                                <option value="euro">אירו</option>
+                                <option value="other">אחר</option>
+                              </select>
+                              <select name="transaction_Method" style="width:40%">
+                                <option value="cash">מזומן</option>
+                                <option value="check">צ'יק</option>
+                                <option value="transfer">העברה בנקאית</option>
+                                <option value="credit-card">אחר</option>
+                              </select>
+                              
+                            </td>
                             </tr>
                             <tr>
                               <td></td>
@@ -151,7 +151,7 @@ insertPerson($mysqli);
                             </tr>
                             <tr>
                               <td></td>
-                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepicker" placeholder="תאריך"></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick3" placeholder="תאריך"></td>
                             </tr>
 
 
@@ -184,10 +184,10 @@ insertPerson($mysqli);
     <script src="../includes/js/jquery-3.1.1.min.js"></script>
     <script src="../includes/js/bootstrap.min.js"></script>
     <!-- <script type="text/javascript" src="../includes/js/script.js"></script> -->
-    <script type="text/javascript" src="../includes/js/jquery-ui-1.12.1.calendar/jquery-ui.js"></script>
+    <script type="text/javascript" src="../includes/js/jquery-ui-calendar/jquery-ui.js"></script>
     <script>
     $( function() {
-      $( "#datepicker" ).datepicker($.datepicker.regional["he"]);
+      $( "#datepick1, #datepick2, #datepick3" ).datepicker($.datepicker.regional["he"]);
 
     } );
     // Hover states on the static widgets
