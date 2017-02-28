@@ -153,6 +153,203 @@ insertPerson($mysqli);
                               <td></td>
                               <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick3" placeholder="תאריך"></td>
                             </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick4" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick5" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick5" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick6" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick7" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick8" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick9" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick10" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick11" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick12" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick13" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick14" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick15" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick16" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick17" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick18" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick19" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick20" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick21" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick22" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick23" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick24" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick25" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick26" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick27" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick28" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick29" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick30" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick31" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick32" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick33" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick34" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick35" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick36" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick37" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick38" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick39" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick40" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick41" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick42" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick43" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick44" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick45" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick46" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick47" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick48" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick49" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick50" placeholder="תאריך"></td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick51" placeholder="תאריך"></td>
+                            </tr>
+
 
 
 
@@ -187,7 +384,7 @@ insertPerson($mysqli);
     <script type="text/javascript" src="../includes/js/jquery-ui-calendar/jquery-ui.js"></script>
     <script>
     $( function() {
-      $( "#datepick1, #datepick2, #datepick3" ).datepicker($.datepicker.regional["he"]);
+      $( "'input[id^="datepick"]'" ).datepicker($.datepicker.regional["he"]);
 
     } );
     // Hover states on the static widgets
