@@ -104,7 +104,11 @@ insertPerson($mysqli);
                                 <div class="checkbox">
                                     <label>תשלומים    <input type="checkbox"></label>
                                 </div>
-                                </td>
+                              </td>
+                              <td>
+                                <input style="width:44%" type="number" placeholder="מספר תשלומים" min="1">
+                              </td>
+
                             </tr>
 
                             <!-- need to be hidden and shown as needed -->
