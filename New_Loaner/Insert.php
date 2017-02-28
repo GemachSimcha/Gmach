@@ -36,8 +36,8 @@ insertPerson($mysqli);
                 <h1>הוסף אנשים חדשים</h1>
 
                     
-                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-                        <table id="insert">
+                    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form-inline">
+                        <table id="insert" class="form-group">
                             
                             <tr>
                                 <td>שם פרטי</td>
@@ -70,13 +70,13 @@ insertPerson($mysqli);
                             <tr>
                                 <td>מטבע וצורה</td>
                                 <td>
-                                    <select name="Currency" style="width: 30%">
+                                    <select name="Currency" style="width: 26%">
                                       <option value="shekel">שקל</option>
                                       <option value="dollar">דולר</option>
                                       <option value="euro">אירו</option>
                                       <option value="other">אחר</option>
                                     </select>
-                                    <select name="Method" style="width: 50%">
+                                    <select name="Method" style="width: 40%">
                                       <option value="cash">מזומן</option>
                                       <option value="check">צ'יק</option>
                                       <option value="transfer">העברה בנקאית</option>
@@ -98,78 +98,71 @@ insertPerson($mysqli);
                             <tr>
                                 <td>ערבים</td>
                                 <td><input type="text" name="Areivim" id="Areivim"></td>
-                            </tr>                   
+                            </tr>
                             <tr>
-                                <td>תשלומים</td>
-                                <td><input style="width:55%" type="number" name="NumberOfPayments" id="NumberOfPayments" placeholder="מספר תשלומים" min="0" max="150"></td>
-                            </tr> 
+                              <td>
+                                <div class="checkbox">
+                                    <label>תשלומים    <input type="checkbox"></label>
+                                </div>
+                                </td>
+                            </tr>
+
+                            <!-- need to be hidden and shown as needed -->
 
 
-
-
+                            <tr>
+                              <td></td>
+                              <td>
+                                   <input type="radio">    חודשי 
+                              </td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input style="width:40%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
+                            </tr>
+                            <tr>
+                            <td></td>
+                              <td>
+                                
+                                <select name="transaction_Currency" style="width:26%">
+                                  <option value="shekel">שקל</option>
+                                  <option value="dollar">דולר</option>
+                                  <option value="euro">אירו</option>
+                                  <option value="other">אחר</option>
+                                </select>
+                                <select name="transaction_Method" style="width:40%">
+                                  <option value="cash">מזומן</option>
+                                  <option value="check">צ'יק</option>
+                                  <option value="transfer">העברה בנקאית</option>
+                                  <option value="credit-card">אחר</option>
+                                </select>
+                                
+                              </td>
+                            </tr>
+                            <tr>
+                              <td></td>
+                              <td>
+                                 <input type="radio">    אחר   
+                              </td>
+                            </tr>
+                            <tr>
+                            <td></td>
+                              <td>
+                                    <input type="submit" class="btn btn-default" value="הוסף">
+                              </td>
+                            </tr>                   
+                            
                         
                             
 
 
 
                         </table>
-                        <script>$('div.ltr').removeClass("pull-right");</script>
-                        <div class="radio">
-                            <label>
-                                <input name="options" type="radio">תשלומים            </label>
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">תשלומים
-                            </label>
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2">
-                                <input type="submit" class="btn btn-default" value="הוסף">
-                            </div>
-                        </div>
+                        
+                        
                     </form>
                     </div>
-                        <!-- need to be hidden and shown as needed -->
-                    <div id="installments">
-                        <h1>תשלומים</h1>
-
-                        
-                        <form method="post" action="<?php echo $_SESSION['URL']; ?>">
-                            <table>
-                                <tr>
-                                    <td>חודשי</td>
-                                    <td><input style="width:30%" type="text" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input style="width:40%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך" min="1" max="30"></td>
-                                </tr>
-                                <?php for ($i=1; $i <= $_SESSION['NumberOfPayments']; $i++) {  ?>
-                                <tr>
-                                   <td><?php echo $i?></td>
-                                   <td><input style="width:30%" type="text" name="transaction_Amount" id="transaction_Amount" placeholder="סכום"><input style="width:65%" type="date" name="DateOfInstallment" id="DateOfInstallment" ></td>
-                               </tr>
-                               <?php } ?>
-                               <tr>
-                                   <td>מטבע וצורה</td>
-                                   <td>
-                                       <select name="transaction_Currency" style="width:30%">
-                                         <option value="shekel">שקל</option>
-                                         <option value="dollar">דולר</option>
-                                         <option value="euro">אירו</option>
-                                         <option value="other">אחר</option>
-                                       </select>
-                                       <select name="transaction_Method" style="width:50%">
-                                         <option value="cash">מזומן</option>
-                                         <option value="check">צ'יק</option>
-                                         <option value="transfer">העברה בנקאית</option>
-                                         <option value="credit-card">אחר</option>
-                                       </select>
-                                   </td>
-                               </tr>
-                              
-                            </table>
-                        </form>
-                    </div> <!-- installments -->
+                    
 
             </section>
         </div>
