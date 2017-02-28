@@ -150,6 +150,15 @@ insertPerson($mysqli);
                               </td>
                             </tr>
                             <tr>
+                              <td></td>
+                              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepicker" placeholder="תאריך"></td>
+                            </tr>
+
+
+
+
+
+                            <tr>
                             <td></td>
                               <td>
                                     <input type="submit" class="btn btn-default" value="הוסף">
