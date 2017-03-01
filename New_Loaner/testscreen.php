@@ -18,7 +18,7 @@ require_once("../includes/functions.php");
 <body>
 
 <h1>אנשים</h1>
-<div class="container" style="text-align: right;">
+<div class="container">
 
     <table class="table table-striped table-bordered table-hover table-condensed" >
        <thead>

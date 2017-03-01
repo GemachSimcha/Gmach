@@ -6,6 +6,10 @@ body {
     padding-left: 55px;
 }
 
+th {
+    text-align: right;
+}
+
 /*table, tr {
     font-family: arial, sans-serif;
     border-collapse: collapse;
