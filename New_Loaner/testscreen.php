@@ -20,7 +20,7 @@ require_once("../includes/functions.php");
 <h1>אנשים</h1>
 <div class="container">
 
-    <table class="table table-striped table-bordered table-hover table-condensed" >
+    <table class="table table-bordered table-hover table-condensed" >
        <thead>
            <tr>
                <th width="175">שם </th>
