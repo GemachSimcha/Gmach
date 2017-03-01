@@ -395,6 +395,9 @@ insertPerson($mysqli);
   </section>
 </div>
 </div>    
+  
+  <?php include_once 'testscreen.php'; ?>
+
 
   <script src="../includes/js/jquery-3.1.1.min.js"></script>
   <script src="../includes/js/bootstrap.min.js"></script>
@@ -406,4 +409,3 @@ insertPerson($mysqli);
   </body>
 </html>
 
-    <?php include_once 'testscreen.php'; ?>

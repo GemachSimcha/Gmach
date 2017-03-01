@@ -53,8 +53,7 @@ $loan_transaction_stmt->close();
 
 
 // installments
-    if ($_SESSION['NumberOfPayments'] > 1) {
-        header('Location: ../includes/installments.php');
+
 
     if($_POST['transaction_submit']) {
         $transaction_date = $_POST['DateOfInstallment'];
@@ -76,7 +75,7 @@ $loan_transaction_stmt->close();
 }
 
 }
-}
+
 
 
 
