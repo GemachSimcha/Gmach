@@ -87,7 +87,7 @@ insertPerson($mysqli);
             <tr>
 
                 <td>תאריך ההלואה</td>
-                <td><input type="text" name="DateOfLoan" id="datepick1" class="datepicker" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')">
+                <td><input type="text" name="DateOfLoan" id="datepick1" class="datepicker" required oninvalid="this.setCustomValidity('שדה חובה')" <!-- oninput="setCustomValidity('') -->">
                 </td>
             </tr>
             <tr>
@@ -105,7 +105,7 @@ insertPerson($mysqli);
                 </div>
               </td>
               <td>
-                <input style="width:44%" type="number" placeholder="מספר תשלומים" min="1">
+                <input style="width:44%" type="number" name="NumberOfPayments" placeholder="מספר תשלומים" min="1">
               </td>
 
             </tr>
@@ -121,19 +121,19 @@ insertPerson($mysqli);
             </tr>
             <tr>
               <td></td>
-              <td><input style="width:30%" type="text" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input style="width:40%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" class="datepicker" min="1" max="31"></td>
+              <td><input style="width:30%" type="text" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input style="width:40%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
             </tr>
             <tr>
             <td></td>
             <td>
               
-              <select name="transaction_Currency" style="width:26%">
+              <select name="monthly_Currency" style="width:26%">
                 <option value="shekel">שקל</option>
                 <option value="dollar">דולר</option>
                 <option value="euro">אירו</option>
                 <option value="other">אחר</option>
               </select>
-              <select name="transaction_Method" style="width:40%">
+              <select name="monthly_Method" style="width:40%">
                 <option value="check">צ'יק</option>
                 <option value="transfer">העברה בנקאית</option>
                 <option value="cash">מזומן</option>
@@ -152,13 +152,13 @@ insertPerson($mysqli);
             <td></td>
             <td>
               
-              <select name="transaction_Currency" style="width:26%">
+              <select name="installment_Currency" style="width:26%">
                 <option value="shekel">שקל</option>
                 <option value="dollar">דולר</option>
                 <option value="euro">אירו</option>
                 <option value="other">אחר</option>
               </select>
-              <select name="transaction_Method" style="width:40%">
+              <select name="installment_Method" style="width:40%">
                 <option value="check">צ'יק</option>
                 <option value="transfer">העברה בנקאית</option>
                 <option value="cash">מזומן</option>
@@ -376,7 +376,7 @@ insertPerson($mysqli);
             <tr>
             <td></td>
               <td>
-                    <input type="submit" class="btn btn-default" value="הוסף">
+                    <input type="submit" name="submit" class="btn btn-default" value="הוסף">
               </td>
             </tr>                   
             

@@ -9,6 +9,9 @@ $mysqli->set_charset("utf8");
 
 function insertPerson($mysqli){ 
 
+if ($_POST['submit']){
+
+
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
             $telephone = $_POST['telephone'];
@@ -16,28 +19,31 @@ function insertPerson($mysqli){
             $address = $_POST['address'];
             $idnumber = $_POST['idnumber'];
             $SumOfLoans = $_POST['TotalLoan'];
-            $_SESSION['NumberOfPayments'] = $_POST['NumberOfPayments'];
+            $NumberOfPayments = $_POST['NumberOfPayments'];
             $currency = $_POST['Currency'] ;
             $method = $_POST['Method'] ;
             $DateOfLoan = $_POST['DateOfLoan'] ;
             $DateOfFinalPayment = $_POST['DateOfFinalPayment'] ;
             $Areivim = $_POST['Areivim'] ;
 
-// INSERT PERSON FOLDER
-$person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
 
-$person_stmt = $mysqli->prepare($person_insert);
-$person_stmt->bind_param("sssssss",$firstname, $lastname, $idnumber, $cellphone, $telephone, $address, $SumOfLoans);
-//execute query
-if (!$person_stmt->execute()) {
-        echo '<h4 style="color:red; margin-right: 50px">כנראה שאני כבר ברשימה... (או שהפרטים לא מדוייקים?)</h4>';
-} 
+// INSERT PERSON FOLDER
+    $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
+
+    $person_stmt = $mysqli->prepare($person_insert);
+    $person_stmt->bind_param("sssssss",$firstname, $lastname, $idnumber, $cellphone, $telephone, $address, $SumOfLoans);
+    //execute query
+    if (!$person_stmt->execute()) {
+            echo '<h4 style="color:red; margin-right: 50px">כנראה שאני כבר ברשימה... (או שהפרטים לא מדוייקים?)</h4>';
+    } 
+
 
 // INSERT INTO LOAN  FOLDER 
     $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments/*, FutureInstallments, DoneTransactions*/) VALUE (?,?,?,?,?,?,?,?,?/*,?,?*/)";
     $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
-    $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $SumOfLoans, $currency, $method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $_SESSION['NumberOfPayments']);
+    $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $SumOfLoans, $currency, $method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
     $loan_folder_stmt->execute();
+    
 
 // INSRT loan transaction FOLDER
     $loan_transaction_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'Loan')";
@@ -53,26 +59,29 @@ $loan_transaction_stmt->close();
 
 
 // installments
+        
 
+        // needs to be foreach transaction
 
-    if($_POST['transaction_submit']) {
-        $transaction_date = $_POST['DateOfInstallment'];
-        $transaction_currency = $_POST['transaction_Currency'];
-        $transaction_method = $_POST['transaction_Method'];
-        $transaction_amount = $_POST['transaction_Amount'];
+        $installment_date = $_POST['DayOfMonth'];
+        // month needs to be added to date
+        $installment_currency = $_POST['monthly_Currency'];
+        $installment_method = $_POST['monthly_Method'];
+        $installment_amount = $_POST['monthly_Amount'];
 
-    $transactions_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
+    $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
 
-    $transactions_stmt = $mysqli->prepare($transactions_insert);
+    $installment_stmt = $mysqli->prepare($installment_insert);
         
         /***********************************************
         /
         /       foreach NumbeOfPayments                */
 
-    if(!$transactions_stmt->bind_param("sssssssss",$firstname, $cellphone, $transaction_date, $transaction_currency, $transaction_method, $transaction_amount, $Explaination)) {
+    if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
         echo "binding did not work</br>";}
-    $transactions_stmt->execute();
+    $installment_stmt->execute();
 }
+
 
 }
 
