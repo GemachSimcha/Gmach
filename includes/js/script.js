@@ -1,7 +1,11 @@
 
 $( function() {
-   $( ".datepicker" ).datepicker($.datepicker.regional["he"]);
+   // $( ".datepicker" ).datepicker($.datepicker.regional["he"]);
+   $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+   $( "#datepick1" ).datepicker("setDate", new Date());
 
+   //hide spinner
+   // $( "#editing-view-port" ).hide();
 
 // Hover states on the static widgets
 $( "#dialog-link, #icons li" ).hover(

@@ -48,7 +48,7 @@ insertPerson($mysqli);
             </tr>
             <tr>
                 <td>תעודת זהות</td>
-                <td><input type="text" name="idnumber" id="idnumber"></td>
+                <td><input type="tel" name="idnumber" id="idnumber"></td>
             </tr>
             <tr>
                 <td>פלאפון</td>
@@ -87,8 +87,7 @@ insertPerson($mysqli);
             <tr>
 
                 <td>תאריך ההלואה</td>
-                <td><input type="text" name="DateOfLoan" id="datepick1" class="datepicker" required oninvalid="this.setCustomValidity('שדה חובה')" <!-- oninput="setCustomValidity('') -->">
-                </td>
+                <td><input type="text" name="DateOfLoan" id="datepick1" class="datepicker"></td>
             </tr>
             <tr>
                 <td>תאריך תשלום(אחרון)</td>
