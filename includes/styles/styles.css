@@ -10,6 +10,18 @@ th {
     text-align: right;
 }
 
+/*I added 
+      input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+to stop spinners*/
+
+tr.installments input[type=number]::-webkit-inner-spin-button, tr.installments input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; }
+tr.no_spin input[type=number]::-webkit-inner-spin-button, tr.no_spin input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; }
+
+
 /*table, tr {
     font-family: arial, sans-serif;
     border-collapse: collapse;

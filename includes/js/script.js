@@ -5,7 +5,7 @@ $( function() {
    $( "#datepick1" ).datepicker("setDate", new Date());
 
    //hide spinner
-   // $( "#editing-view-port" ).hide();
+   $( "#spin" ).hide();
 
 // Hover states on the static widgets
 $( "#dialog-link, #icons li" ).hover(

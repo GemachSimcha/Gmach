@@ -46,25 +46,25 @@ insertPerson($mysqli);
                 <td>שם משפחה</td>
                 <td><input type="text" name="lastname" id="lastname"></td>
             </tr>
-            <tr>
+            <tr class="no_spin">
                 <td>תעודת זהות</td>
-                <td><input type="tel" name="idnumber" id="idnumber"></td>
+                <td><input type="number" name="idnumber" id="idnumber"></td>
             </tr>
-            <tr>
+            <tr class="no_spin">
                 <td>פלאפון</td>
-                <td><input type="text" name="cellphone" id="cellphone" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
+                <td><input type="number" name="cellphone" id="cellphone" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
             </tr>
-            <tr>
+            <tr class="no_spin">
                 <td>טלפון</td>
-                <td><input type="text" name="telephone" id="telephone"></td>
+                <td><input type="number" name="telephone" id="telephone"></td>
             </tr>
             <tr>
                 <td>כתובת</td>
                 <td><input type="text" name="address" id="address"></td>
             </tr>
-            <tr>
+            <tr class="no_spin">
                 <td>סכום ההלואה</td>
-                <td><input type="text" name="TotalLoan" id="TotalLoan"></td>
+                <td><input type="number" name="TotalLoan" id="TotalLoan"></td>
             </tr>
             <tr>
                 <td>מטבע וצורה</td>
@@ -104,7 +104,7 @@ insertPerson($mysqli);
                 </div>
               </td>
               <td>
-                <input style="width:44%" type="number" name="NumberOfPayments" placeholder="מספר תשלומים" min="1">
+                <input style="width:44%" type="number" name="NumberOfPayments" placeholder="מספר תשלומים" min="1" style="-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }">
               </td>
 
             </tr>
@@ -165,11 +165,17 @@ insertPerson($mysqli);
               </select>
               
             </td>
+
             </tr>
-            <tr>
+            <tr class="installments">
               <td></td>
-              <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick3" placeholder="תאריך" class="datepicker"></td>
+              <td><input style="width:30%" type="number" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick3" placeholder="תאריך" class="datepicker"></td>
             </tr>
+
+
+
+            <!-- need to ensure type=number without spinner -->
+
             <tr>
               <td></td>
               <td><input style="width:30%" type="text" name="" id="" placeholder="סכום"><input type="text" name="" id="datepick4" placeholder="תאריך" class="datepicker"></td>
