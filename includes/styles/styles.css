@@ -20,6 +20,9 @@ tr.installments input[type=number]::-webkit-inner-spin-button, tr.installments i
 tr.no_spin input[type=number]::-webkit-inner-spin-button, tr.no_spin input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none; 
     margin: 0; }
+td.no_spin input[name="monthly_Amount"]::-webkit-inner-spin-button, td.no_spin input[name="monthly_Amount"]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; }
 
 
 /*table, tr {

@@ -111,42 +111,44 @@ insertPerson($mysqli);
 
             <!-- need to be hidden and shown as needed -->
 
+            <div class="radio">
+              <tr>
+                <td></td>
+                <td>
+                     <input type="radio">    חודשי 
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td class="no_spin"><input style="width:30%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input style="width:40%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
+              </tr>
+              <tr>
+              <td></td>
+              <td>
+                
+                <select name="monthly_Currency" style="width:26%">
+                  <option value="shekel">שקל</option>
+                  <option value="dollar">דולר</option>
+                  <option value="euro">אירו</option>
+                  <option value="other">אחר</option>
+                </select>
+                <select name="monthly_Method" style="width:40%">
+                  <option value="check">צ'יק</option>
+                  <option value="transfer">העברה בנקאית</option>
+                  <option value="cash">מזומן</option>
+                  <option value="credit-card">אחר</option>
+                </select>
+                
+              </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                   <input type="radio">    אחר   
+                </td>
+              </tr>
+            </div>
 
-            <tr>
-              <td></td>
-              <td>
-                   <input type="radio">    חודשי 
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><input style="width:30%" type="text" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input style="width:40%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
-            </tr>
-            <tr>
-            <td></td>
-            <td>
-              
-              <select name="monthly_Currency" style="width:26%">
-                <option value="shekel">שקל</option>
-                <option value="dollar">דולר</option>
-                <option value="euro">אירו</option>
-                <option value="other">אחר</option>
-              </select>
-              <select name="monthly_Method" style="width:40%">
-                <option value="check">צ'יק</option>
-                <option value="transfer">העברה בנקאית</option>
-                <option value="cash">מזומן</option>
-                <option value="credit-card">אחר</option>
-              </select>
-              
-            </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                 <input type="radio">    אחר   
-              </td>
-            </tr>
             <tr>
             <td></td>
             <td>
