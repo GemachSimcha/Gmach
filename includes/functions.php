@@ -58,33 +58,42 @@ $person_stmt->close();
 $loan_transaction_stmt->close();
 
 
-// installments
-        
+// installments   
+      
+    if ($_POST['installments']) {
 
-        // needs to be foreach transaction
+            // needs to be foreach transaction
 
-        $installment_date = $_POST['DayOfMonth'];
-        // month needs to be added to date
-        $installment_currency = $_POST['monthly_Currency'];
-        $installment_method = $_POST['monthly_Method'];
-        $installment_amount = $_POST['monthly_Amount'];
+            $installment_date = $_POST['DayOfMonth'];
+            // month needs to be added to date
+            $installment_currency = $_POST['monthly_Currency'];
+            $installment_method = $_POST['monthly_Method'];
+            $installment_amount = $_POST['monthly_Amount'];
 
-    $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
+        $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
 
-    $installment_stmt = $mysqli->prepare($installment_insert);
-        
-        /***********************************************
-        /
-        /       foreach NumbeOfPayments                */
+        $installment_stmt = $mysqli->prepare($installment_insert);
+            
+            /***********************************************
+            /
+            /       foreach NumbeOfPayments                */
 
-    if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
-        echo "binding did not work</br>";}
-    $installment_stmt->execute();
+        if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
+            echo "binding did not work</br>";}
+
+        $installment_stmt->execute();
+
+
+
+    } else {
+        echo "no תשלומים";
+    }
 }
 
 
-}
 
+
+} 
 
 
 

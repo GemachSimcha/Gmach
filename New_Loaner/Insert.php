@@ -64,7 +64,7 @@ insertPerson($mysqli);
             </tr>
             <tr class="no_spin">
                 <td>סכום ההלואה</td>
-                <td><input type="number" name="TotalLoan" id="TotalLoan"></td>
+                <td><input type="number" name="TotalLoan" id="TotalLoan" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
             </tr>
             <tr>
                 <td>מטבע וצורה</td>
@@ -100,11 +100,11 @@ insertPerson($mysqli);
             <tr>
               <td>
                 <div class="checkbox">
-                    <label>תשלומים    <input type="checkbox"></label>
+                    <label>תשלומים    <input type="checkbox" name="installments"></label>
                 </div>
               </td>
               <td>
-                <input style="width:44%" type="number" name="NumberOfPayments" placeholder="מספר תשלומים" min="1" style="-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }">
+                <input style="width:44%" type="number" name="NumberOfPayments" placeholder="מספר תשלומים" min="1">
               </td>
 
             </tr>
@@ -115,7 +115,7 @@ insertPerson($mysqli);
               <tr>
                 <td></td>
                 <td>
-                     <input type="radio">    חודשי 
+                     <input type="radio" name="options">    חודשי 
                 </td>
               </tr>
               <tr>
@@ -144,7 +144,7 @@ insertPerson($mysqli);
               <tr>
                 <td></td>
                 <td>
-                   <input type="radio">    אחר   
+                   <input type="radio" name="options">    אחר   
                 </td>
               </tr>
             </div>
