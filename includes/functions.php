@@ -62,6 +62,15 @@ $loan_transaction_stmt->close();
       
     if ($_POST['installments']) {
 
+
+            $monthlyOrSpecific = ($_POST["options"]);
+            // radio = monthly
+            if ($_POST['options'] === "monthly") {
+                echo "monthly";
+            } elseif ($_POST['options'] === "specific") {
+                echo "specific";
+            }
+
             // needs to be foreach transaction
 
             $installment_date = $_POST['DayOfMonth'];

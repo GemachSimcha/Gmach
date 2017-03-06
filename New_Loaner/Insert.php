@@ -115,7 +115,7 @@ insertPerson($mysqli);
               <tr>
                 <td></td>
                 <td>
-                     <input type="radio" name="options">    חודשי 
+                     <input type="radio" name="options" <?php if (isset($monthlyOrSpecific) && $monthlyOrSpecific=="monthly") echo "checked";?> value="monthly">    חודשי 
                 </td>
               </tr>
               <tr>
@@ -144,7 +144,7 @@ insertPerson($mysqli);
               <tr>
                 <td></td>
                 <td>
-                   <input type="radio" name="options">    אחר   
+                   <input type="radio" name="options" <?php if (isset($monthlyOrSpecific) && $monthlyOrSpecific=="specific") echo "checked";?> value="specific">    אחר   
                 </td>
               </tr>
             </div>
