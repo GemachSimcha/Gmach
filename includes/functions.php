@@ -101,6 +101,30 @@ $loan_transaction_stmt->close();
 
             $installment_stmt->execute();
 
+            $i = 1;
+            while ($i <= $NumberOfPayments) {
+                $nowDate->modify( '+1 month');
+                $next_installment_date = $nowDate->format('Y-m-d');
+
+                $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
+
+                $installment_stmt = $mysqli->prepare($installment_insert);
+                    
+                    /***********************************************
+                    /
+                    /       foreach NumbeOfPayments                */
+
+                if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $next_installment_date, $installment_currency, $installment_method, $installment_amount)) {
+                    echo "binding did not work</br>";}
+
+                $installment_stmt->execute();
+
+                $i++;  /* the printed value would be
+                               $i before the increment
+                               (post-increment) */
+            }
+
+
 
             
 
