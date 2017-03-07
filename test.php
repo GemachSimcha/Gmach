@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>try imput multiple</title>
-</head>
 <body>
-<h1>
-	Form input
-</h1>
-<div class="ui-content">
-	<form method="get" action="">
-	<fieldset class="ui-field-contain">
-		<label for="address">Your Address</label>
-		<input type="text" name="address" id="address" value="" placeholder="Your Address"/>
-		<label for="age">Your Age</label>
-		<input type="number" name="age" id="age" value="" placeholder="Your Age"/>
-		<label for="day">Day</label>
-		<input type="date" name="day" id="day" value="" placeholder="Day"/>
-	</fieldset>
-		
-	</form>
-</div>
+
+<?php
+$nowDate = new DateTime();
+
+$X = 15;
+$d = $nowDate->format('d');
+$m = $nowDate->format('m');
+$Y = $nowDate->format('Y');
+
+$nowDate->setDate($Y , $m , $X);
+
+if ($d>$X) {
+	$nowDate->modify( '+1 month');
+} 
+
+$formatted_nowDate = $nowDate->format('Y-m-d');
+echo  $formatted_nowDate."</br>";
+
+
+	// $X = 15;
+	// $d = $date->format('d');
+	// $m = $date->format('m');
+	// $Y = $date->format('Y');
+
+	// $date->setDate($Y , $m , $X); // set the wanted day for the month
+
+	// if($d>$X){ //if the wanted day was after the current day, it means that it next month's one.
+	// $date->modify($date, '+1 month');
+	// }
+
+?>
+
 </body>
 </html>

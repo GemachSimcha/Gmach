@@ -63,13 +63,40 @@ $loan_transaction_stmt->close();
     if ($_POST['installments']) {
 
 
-            $monthlyOrSpecific = ($_POST["options"]);
-            // radio = monthly
-            if ($_POST['options'] === "monthly") {
-                echo "monthly";
-            } elseif ($_POST['options'] === "specific") {
-                echo "specific";
-            }
+        // radio = monthly
+        if ($_POST['options'] === "monthly") {
+
+            /*code for monthly installments*/
+
+
+            // to convert selected day of every month to correct mysql date format
+            
+            $nowDate = new DateTime();
+
+            $X = $_POST('DayOfMonth');
+            $d = $nowDate->format('d');
+            $m = $nowDate->format('m');
+            $Y = $nowDate->format('Y');
+
+            $nowDate->setDate($Y , $m , $X);
+
+            if ($d>$X) {
+                $nowDate->modify( '+1 month');
+            } 
+
+            $formatted_nowDate = $nowDate->format('Y-m-d');
+            
+
+
+
+        }  // radio = specified
+            elseif ($_POST['options'] === "specified") {
+
+            /*code for specified installments*/
+
+
+
+        }
 
             // needs to be foreach transaction
 

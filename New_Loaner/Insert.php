@@ -109,7 +109,12 @@ insertPerson($mysqli);
 
             </tr>
 
-            <!-- need to be hidden and shown as needed -->
+            <!-- 
+
+
+                  need to be hidden and shown as needed
+
+                               -->
 
             <div class="radio">
               <tr>
@@ -144,7 +149,7 @@ insertPerson($mysqli);
               <tr>
                 <td></td>
                 <td>
-                   <input type="radio" name="options" <?php if (isset($monthlyOrSpecific) && $monthlyOrSpecific=="specific") echo "checked";?> value="specific">    אחר   
+                   <input type="radio" name="options" <?php if (isset($monthlyOrSpecific) && $monthlyOrSpecific=="specificied") echo "checked";?> value="specificied">    אחר   
                 </td>
               </tr>
             </div>
