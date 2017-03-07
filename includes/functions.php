@@ -69,11 +69,10 @@ $loan_transaction_stmt->close();
             /*code for monthly installments*/
 
 
-            // to convert selected day of every month to correct mysql date format
-            
+            // to convert selected day of every month to correct mysql date format            
             $nowDate = new DateTime();
 
-            $X = $_POST('DayOfMonth');
+            $X = $_POST['DayOfMonth'];
             $d = $nowDate->format('d');
             $m = $nowDate->format('m');
             $Y = $nowDate->format('Y');
@@ -84,7 +83,25 @@ $loan_transaction_stmt->close();
                 $nowDate->modify( '+1 month');
             } 
 
-            $formatted_nowDate = $nowDate->format('Y-m-d');
+            $installment_date = $nowDate->format('Y-m-d');
+            $installment_currency = $_POST['monthly_Currency'];
+            $installment_method = $_POST['monthly_Method'];
+            $installment_amount = $_POST['monthly_Amount'];
+
+            $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
+
+            $installment_stmt = $mysqli->prepare($installment_insert);
+                
+                /***********************************************
+                /
+                /       foreach NumbeOfPayments                */
+
+            if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
+                echo "binding did not work</br>";}
+
+            $installment_stmt->execute();
+
+
             
 
 
@@ -94,32 +111,19 @@ $loan_transaction_stmt->close();
 
             /*code for specified installments*/
 
+            $installment_date = $_POST['DayOfMonth'];
+            // needs to be foreach transaction
 
 
         }
 
-            // needs to be foreach transaction
 
-            $installment_date = $_POST['DayOfMonth'];
             // month needs to be added to date
             $installment_currency = $_POST['monthly_Currency'];
             $installment_method = $_POST['monthly_Method'];
             $installment_amount = $_POST['monthly_Amount'];
 
-        $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
-
-        $installment_stmt = $mysqli->prepare($installment_insert);
-            
-            /***********************************************
-            /
-            /       foreach NumbeOfPayments                */
-
-        if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
-            echo "binding did not work</br>";}
-
-        $installment_stmt->execute();
-
-
+        
 
     } else {
         echo "no תשלומים";
