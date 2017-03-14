@@ -1,5 +1,8 @@
 # Gmach
 
+
+mar/14 to preview website download הוסף אנשים חדשים.html and הוסף אנשים חדשים_files
+
 weds
 datepickers working, now need to polish php and mysql, then return to hide/show as needed on clientside
 
