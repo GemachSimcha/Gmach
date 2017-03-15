@@ -7,7 +7,9 @@ require_once("../includes/functions.php");
 ?>
 
 <h1>אנשים</h1>
-<div class="container">
+<div class="container" style="
+    height: 300px;
+    overflow: scroll;">
 
     <table class="table table-bordered table-hover table-condensed" id="myTable" >
        <thead>
