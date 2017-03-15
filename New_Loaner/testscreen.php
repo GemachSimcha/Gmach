@@ -5,22 +5,11 @@ require_once("../includes/functions.php");
 
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-
-
-	<title>אנשים</title>
-
-
-</head>
-
-<body>
 
 <h1>אנשים</h1>
 <div class="container">
 
-    <table class="table table-bordered table-hover table-condensed" >
+    <table class="table table-bordered table-hover table-condensed" id="myTable" >
        <thead>
            <tr>
                <th width="175">שם </th>
@@ -33,7 +22,7 @@ require_once("../includes/functions.php");
                <th>פעיל</th>
            </tr>
        </thead>
-       <tbody>
+       <tbody id="myTableBody">
                
                    <?php
 
@@ -64,9 +53,11 @@ require_once("../includes/functions.php");
                
        </tbody>
     </table>
+    <div class="col-md-12 text-center">
+      <ul class="pagination pagination-lg pager" id="myPager"></ul>
+    </div>
 </div>
-</body>
-</html>
+
 
 
 

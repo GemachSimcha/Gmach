@@ -63,7 +63,7 @@ insertPerson($mysqli);
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane active" id="newloaner">
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="navbar-form">
-        <table class="form_group">
+        <table class="form-group">
                   
             <tr  class="has-warning">
                 <td><label for="firstname">שם פרטי</label></td>
@@ -96,13 +96,13 @@ insertPerson($mysqli);
             <tr class="form-inline">
                 <td><label for="Currency Method">מטבע וצורה</label></td>
                 <td>
-                    <select name="Currency" class="form-control" id="Currency" style="width: 44%">
+                    <select name="Currency" class="form-control" id="Currency" style="width: 22%">
                       <option value="shekel">שקל</option>
                       <option value="dollar">דולר</option>
                       <option value="euro">אירו</option>
                       <option value="other">אחר</option>
                     </select>
-                    <select name="Method" class="form-control" id="Method" style="width: 50%">
+                    <select name="Method" class="form-control" id="Method" style="width: 22%">
                       <option value="cash">מזומן</option>
                       <option value="check">צ'יק</option>
                       <option value="transfer">העברה בנקאית</option>
@@ -128,7 +128,7 @@ insertPerson($mysqli);
             <td></td>
               <td class="form-inline">
                <label for="installments">תשלומים</label><input type="checkbox" name="installments">
-               <input type="number" name="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1">
+               <input type="number" name="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1" style="width: 31%">
               </td>
             </tr>
             <!-- 
@@ -147,19 +147,19 @@ insertPerson($mysqli);
             </tr>
             <tr class="form-inline">
               <td></td>
-              <td class="no_spin"><input class="form-control" style="width:38%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input class="form-control" style="width:38%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
+              <td class="no_spin"><input class="form-control" style="width:19%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input class="form-control" style="width:31%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
             </tr>
             <tr>
             <td></td>
             <td class="form-inline">
               
-              <select class="form-control" name="monthly_Currency" style="width:33%">
+              <select class="form-control" name="monthly_Currency" style="width:25%">
                 <option value="shekel">שקל</option>
                 <option value="dollar">דולר</option>
                 <option value="euro">אירו</option>
                 <option value="other">אחר</option>
               </select>
-              <select class="form-control" name="monthly_Method" style="width:41%">
+              <select class="form-control" name="monthly_Method" style="width:25%">
                 <option value="check">צ'יק</option>
                 <option value="transfer">העברה בנקאית</option>
                 <option value="cash">מזומן</option>
@@ -182,13 +182,13 @@ insertPerson($mysqli);
             <td></td>
             <td class="form-inline">
               
-              <select class="form-control" name="installment_Currency" style="width:33%">
+              <select class="form-control" name="installment_Currency" style="width:25%">
                 <option value="shekel">שקל</option>
                 <option value="dollar">דולר</option>
                 <option value="euro">אירו</option>
                 <option value="other">אחר</option>
               </select>
-              <select class="form-control" name="installment_Method" style="width:41%">
+              <select class="form-control" name="installment_Method" style="width:25%">
                 <option value="check">צ'יק</option>
                 <option value="transfer">העברה בנקאית</option>
                 <option value="cash">מזומן</option>
@@ -200,14 +200,14 @@ insertPerson($mysqli);
             </tr>
             <tr class="installments form-inline">
               <td></td>
-              <td><input class="form-control" style="width:38%" type="number" name="installment_amount" id="installment_amount" placeholder="סכום"><input type="text" style="width:38%" name="installment_date" id="datepick3" placeholder="תאריך" class="form-control datepicker"></td>
+              <td><input class="form-control" style="width:25%" type="number" name="installment_amount" id="installment_amount" placeholder="סכום"><input type="text" style="width:25%" name="installment_date" id="datepick3" placeholder="תאריך" class="form-control datepicker"></td>
             </tr>
 
 
             <tr>
             <td></td>
               <td>
-                    <input type="submit" name="submit" class="btn btn-block" value="הוסף">
+                    <input type="submit" name="submit" class="btn btn-block" value="הוסף" style="width: 50%">
               </td>
             </tr>                   
             
