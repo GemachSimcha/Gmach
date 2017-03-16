@@ -299,6 +299,7 @@ insertPerson($mysqli);
   <script src="../includes/js/jquery-3.1.1.min.js"></script>
   <script src="../includes/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../includes/js/jquery-ui-calendar/jquery-ui.js"></script>
+  <script src="../inlcudes/js/jquery.stickytableheaders.js"></script>
   <script type="text/javascript" src="../includes/js/script.js"></script>
 
 

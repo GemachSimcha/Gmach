@@ -9,22 +9,11 @@ body {
 th {
     text-align: right;
 }
+.tableFloatingHeaderOriginal th {
+        background-color: #fff;
+        border-bottom: 1px solid #DDD;
+      }
 
-/*.right-tabs .nav {
-    float: right;
-    border-bottom: 0px;
-}
-.right-tabs .nav li { float: left }
-.right-tabs .tab-content {
-    float: left;
-    border-top: 1px solid #ddd;
-    margin-top: -1px;
-}
-
-*/
-/*I added 
-      input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-to stop spinners*/
 
 tr.installments input[type=number]::-webkit-inner-spin-button, tr.installments input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none; 
