@@ -6,9 +6,8 @@ require_once("../includes/functions.php");
 
 ?>
 
-<h1>אנשים</h1>
 
-    <table class="table table-bordered table-hover table-condensed tableWithFloatingHeader" id="myTable" >
+    <table class="table table-bordered table-hover table-condensed <!-- tableWithFloatingHeader -->" id="myTable" >
        <thead>
            <tr>
                <th width="175">שם </th>
@@ -47,10 +46,10 @@ require_once("../includes/functions.php");
                
        </tbody>
     </table>
-    <div class="col-md-12 text-center">
+    <!-- <div class="col-md-12 text-center">
       <ul class="pagination pagination-lg pager" id="myPager"></ul>
     </div>
-
+ -->
 
 
 

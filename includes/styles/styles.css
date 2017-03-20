@@ -9,11 +9,16 @@ body {
 th {
     text-align: right;
 }
+
+/*body {
+  min-height: 2000px;
+  padding-top: 70px;
+}
 .tableFloatingHeaderOriginal th {
         background-color: #fff;
         border-bottom: 1px solid #DDD;
       }
-
+*/
 
 tr.installments input[type=number]::-webkit-inner-spin-button, tr.installments input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none; 

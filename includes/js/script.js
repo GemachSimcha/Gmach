@@ -19,6 +19,15 @@ $( "#dialog-link, #icons li" ).hover(
     }
 );
 
+$(document).ready(function () {
+      // initialize stickyTableHeaders _after_ tablesorter
+      $(".tablesorter").tablesorter();
+      $("table").stickyTableHeaders();
+    });
+
+$('table').stickyTableHeaders();
+
+
 
 
 } );

@@ -16,8 +16,19 @@ insertPerson($mysqli);
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../includes/styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../includes/styles/stickyheaders/bootstrap.css">
     <link href="../includes/styles/styles.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../includes/js/jquery-ui-calendar/jquery-ui.css">
+    <style type="text/css">
+      body {
+        min-height: 2000px;
+        padding-top: 70px;
+      }
+      .tableFloatingHeaderOriginal th {
+              background-color: #fff;
+              border-bottom: 1px solid #DDD;
+            }
+    </style>
 
 
 
@@ -274,7 +285,7 @@ insertPerson($mysqli);
 
 
   </div>  <!-- tab-content -->
-  </nav>
+  </nav> <!-- first navbar -->
   
 
       
@@ -292,14 +303,52 @@ insertPerson($mysqli);
   </div>
 
 
+  <nav class="navbar clearfix"> <!-- second navbar -->
+    <div class="container-fluid">
+      <div class="navbar-header navbar-right"><p class="navbar-brand">מידע ועדכונים</p></div>
+      <ul class="nav nav-tabs navbar navbar-right" role="tablist">
+        <li role="presentation" class="active pull-right">
+          <a role="tab" data-toggle="tab"
+           href="#uncompleted">פעולות שטרם אושרו</a>
+        </li>
+        <li role="presentation" class="pull-right">
+          <a role="tab" data-toggle="tab"
+           href="#people">אנשים</a>
+        </li>
+        <li role="presentation" class="pull-right">
+            <a role="tab" data-toggle="tab"
+             href="#changes">עדכונים</a>
+          </li>
+        </ul>
+    </div> <!-- container-fluid -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane" id="uncompleted">
+
+        <h3>טבלת עפולות שטרם היו/אושרו</h3>
+
+      </div> <!-- uncompleted tab -->
+      <div role="tabpanel" class="tab-pane" id="people">
+
+      <?php include_once 'testscreen.php'; ?>
+
+      </div> <!-- people tab -->
+      <div role="tabpanel" class="tab-pane" id="changes">
+
+        <h3>טופס של שינויי פרטים אישיים ופרטי עסקאות וכו'</h3>
+
+      </div> <!-- changes tab -->
+
+    </div>
+  </nav> <!-- second navbar -->
+
+
   
-  <?php include_once 'testscreen.php'; ?>
 
 
   <script src="../includes/js/jquery-3.1.1.min.js"></script>
   <script src="../includes/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../includes/js/jquery-ui-calendar/jquery-ui.js"></script>
-  <script src="../inlcudes/js/jquery.stickytableheaders.js"></script>
+  <script src="../includes/js/jquery.stickytableheaders.min.js"></script>
   <script type="text/javascript" src="../includes/js/script.js"></script>
 
 
