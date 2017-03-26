@@ -43,9 +43,43 @@ require_once("../includes/functions.php");
                $result->close();
            }
            ?>
-               
+              
+
        </tbody>
     </table>
+
+    <script>
+      var table = $('table'),
+      thead = table.find('thead'),
+
+      fixed_thead,
+
+      the_window = $(window);
+
+      thead.find('td').each(function() {
+        var el = $(this);
+        el.css('width', el.width());
+      });
+
+      fixed_thead = thead.clone().prependTo('thead').hide();
+      // thead.after(fixed_thead);
+
+      fixed_thead.css({
+        'position': 'fixed',
+        'top': 0,
+        'width': thead.width()
+      });
+
+      the_window.scroll(function() {
+        if ( the_window.scrollTop() > table.offset().top) {
+          fixed_thead.show();
+        } else {
+          fixed_thead.hide();
+        }
+      })
+
+
+    </script>
     <!-- <div class="col-md-12 text-center">
       <ul class="pagination pagination-lg pager" id="myPager"></ul>
     </div>
