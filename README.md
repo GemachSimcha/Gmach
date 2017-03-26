@@ -1,6 +1,9 @@
 # Gmach
 
 
+mar/27 dumped unneeded files&folders
+STILL strugglig with stickyheaders
+
 mar/14 to preview website download הוסף אנשים חדשים.html and הוסף אנשים חדשים_files
 
 weds
