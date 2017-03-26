@@ -8,7 +8,7 @@ require_once("../includes/functions.php");
 
 
     <table class="table table-bordered table-hover table-condensed <!-- tableWithFloatingHeader -->" id="myTable" >
-       <thead>
+       <thead id="stikyhead">
            <tr>
                <th width="175">שם </th>
                <th>פלאפון</th>
@@ -49,8 +49,8 @@ require_once("../includes/functions.php");
     </table>
 
     <script>
-      var table = $('table'),
-      thead = table.find('thead'),
+      var table = $('table.myTable'),
+      thead = table.find('thead.stikyhead'),
 
       fixed_thead,
 
@@ -61,7 +61,7 @@ require_once("../includes/functions.php");
         el.css('width', el.width());
       });
 
-      fixed_thead = thead.clone().prependTo('thead').hide();
+      fixed_thead = thead.clone().prependTo('thead.stikyhead').hide();
       // thead.after(fixed_thead);
 
       fixed_thead.css({
@@ -76,7 +76,7 @@ require_once("../includes/functions.php");
         } else {
           fixed_thead.hide();
         }
-      })
+      });
 
 
     </script>
