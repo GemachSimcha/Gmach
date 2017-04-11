@@ -16,19 +16,9 @@ insertPerson($mysqli);
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../includes/styles/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../includes/styles/stickyheaders/bootstrap.css">
     <link href="../includes/styles/styles.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../includes/js/jquery-ui-calendar/jquery-ui.css">
-    <style type="text/css">
-      body {
-        min-height: 2000px;
-        padding-top: 70px;
-      }
-      .tableFloatingHeaderOriginal th {
-              background-color: #fff;
-              border-bottom: 1px solid #DDD;
-            }
-    </style>
+    
 
 
 
@@ -138,8 +128,8 @@ insertPerson($mysqli);
             <tr>
             <td></td>
               <td class="form-inline">
-               <label for="installments">תשלומים</label><input type="checkbox" name="installments">
-               <input type="number" name="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1" style="width: 31%">
+               <label for="installments">תשלומים</label><input type="checkbox" id="installments" name="installments">
+               <!-- <input type="number" name="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1" style="width: 31%"> -->
               </td>
             </tr>
             <!-- 
@@ -148,71 +138,73 @@ insertPerson($mysqli);
                   need to be hidden and shown as needed
 
                                -->
-            <tr>
-              <td></td>
-              <td class="form-check">
-                 <label class="form-check-label" for="monthly">
-                 <input class="form-check-input" type="radio" name="options" <?php if (isset($monthlyOrSpecific) && $monthlyOrSpecific=="monthly") echo "checked";?> value="monthly">   חודשי
-                 </label> 
-              </td>
-            </tr>
-            <tr class="form-inline">
-              <td></td>
-              <td class="no_spin"><input class="form-control" style="width:19%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input class="form-control" style="width:31%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
-            </tr>
-            <tr>
-            <td></td>
-            <td class="form-inline">
-              
-              <select class="form-control" name="monthly_Currency" style="width:25%">
-                <option value="shekel">שקל</option>
-                <option value="dollar">דולר</option>
-                <option value="euro">אירו</option>
-                <option value="other">אחר</option>
-              </select>
-              <select class="form-control" name="monthly_Method" style="width:25%">
-                <option value="check">צ'יק</option>
-                <option value="transfer">העברה בנקאית</option>
-                <option value="cash">מזומן</option>
-                <option value="credit-card">אחר</option>
-              </select>
-              
-            </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td class="form-check">
-                <label for="" class="form-check-label" for="specificied">
-                  <input class="form-check-input" type="radio" name="options" <?php if (isset($monthlyOrSpecific) && $monthlyOrSpecific=="specificied") echo "checked";?> value="specificied">    אחר
-                </label>
-                    
-              </td>
-            </tr>                         
-           
-            <tr>
-            <td></td>
-            <td class="form-inline">
-              
-              <select class="form-control" name="installment_Currency" style="width:25%">
-                <option value="shekel">שקל</option>
-                <option value="dollar">דולר</option>
-                <option value="euro">אירו</option>
-                <option value="other">אחר</option>
-              </select>
-              <select class="form-control" name="installment_Method" style="width:25%">
-                <option value="check">צ'יק</option>
-                <option value="transfer">העברה בנקאית</option>
-                <option value="cash">מזומן</option>
-                <option value="credit-card">אחר</option>
-              </select>
-              
-            </td>
+                    <div class="selectedMethod">
+                      <tr>
+                        <td></td>
+                        <td class="form-check">
+                           <label class="form-check-label" for="monthly">
+                           <input class="form-check-input" type="radio" name="options" <?php if (isset($monthlyOrSpecific) && $monthlyOrSpecific=="monthly") echo "checked";?> value="monthly">   חודשי
+                           </label> 
+                        </td>
+                      </tr>
+                      <tr class="form-inline">
+                        <td></td>
+                        <td class="no_spin"><input class="form-control" style="width:19%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input class="form-control" style="width:31%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
+                      </tr>
+                      <tr>
+                      <td></td>
+                      <td class="form-inline">
+                        
+                        <select class="form-control" name="monthly_Currency" style="width:25%">
+                          <option value="shekel">שקל</option>
+                          <option value="dollar">דולר</option>
+                          <option value="euro">אירו</option>
+                          <option value="other">אחר</option>
+                        </select>
+                        <select class="form-control" name="monthly_Method" style="width:25%">
+                          <option value="check">צ'יק</option>
+                          <option value="transfer">העברה בנקאית</option>
+                          <option value="cash">מזומן</option>
+                          <option value="credit-card">אחר</option>
+                        </select>
+                        
+                      </td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                        <td class="form-check">
+                          <label for="" class="form-check-label" for="specificied">
+                            <input class="form-check-input" type="radio" name="options" <?php if (isset($monthlyOrSpecific) && $monthlyOrSpecific=="specificied") echo "checked";?> value="specificied">    אחר
+                          </label>
+                              
+                        </td>
+                      </tr>                         
+                      
+                      <tr>
+                      <td></td>
+                      <td class="form-inline">
+                        
+                        <select class="form-control" name="installment_Currency" style="width:25%">
+                          <option value="shekel">שקל</option>
+                          <option value="dollar">דולר</option>
+                          <option value="euro">אירו</option>
+                          <option value="other">אחר</option>
+                        </select>
+                        <select class="form-control" name="installment_Method" style="width:25%">
+                          <option value="check">צ'יק</option>
+                          <option value="transfer">העברה בנקאית</option>
+                          <option value="cash">מזומן</option>
+                          <option value="credit-card">אחר</option>
+                        </select>
+                        
+                      </td>
 
-            </tr>
-            <tr class="installments form-inline">
-              <td></td>
-              <td><input class="form-control" style="width:25%" type="number" name="installment_amount" id="installment_amount" placeholder="סכום"><input type="text" style="width:25%" name="installment_date" id="datepick3" placeholder="תאריך" class="form-control datepicker"></td>
-            </tr>
+                      </tr>
+                      <tr class="installments form-inline">
+                        <td></td>
+                        <td><input class="form-control" style="width:25%" type="number" name="installment_amount" id="installment_amount" placeholder="סכום"><input type="text" style="width:25%" name="installment_date" id="datepick3" placeholder="תאריך" class="form-control datepicker"></td>
+                      </tr>
+                    </div>
 
 
             <tr>
@@ -348,7 +340,6 @@ insertPerson($mysqli);
   <script src="../includes/js/jquery-3.1.1.min.js"></script>
   <script src="../includes/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../includes/js/jquery-ui-calendar/jquery-ui.js"></script>
-  <script src="../includes/js/jquery.stickytableheaders.min.js"></script>
   <script type="text/javascript" src="../includes/js/script.js"></script>
 
 

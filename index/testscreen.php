@@ -7,50 +7,52 @@ require_once("../includes/functions.php");
 ?>
 
 
-    <table class="table table-bordered table-hover table-condensed <!-- tableWithFloatingHeader -->" id="myTable" >
-       <thead id="stikyhead">
-           <tr>
-               <th width="175">שם </th>
-               <th>פלאפון</th>
-               <th>סכום הלוואות</th>
-               <th>סכום פקדונות</th>
-               <th>פעיל</th>
-           </tr>
-       </thead>
+    <div class="window">
+      <table class="table table-bordered table-hover table-condensed" id="myTable" >
+         <thead id="stikyhead">
+             <tr>
+                 <th width="175">שם </th>
+                 <th>פלאפון</th>
+                 <th>סכום הלוואות</th>
+                 <th>סכום פקדונות</th>
+                 <th>פעיל</th>
+             </tr>
+         </thead>
 
-       <tbody id="myTableBody">
-               
-                   <?php
+         <tbody id="myTableBody">
+                 
+                     <?php
 
-           $query = "SELECT * FROM Person";
+             $query = "SELECT * FROM Person";
 
-           if ($result = $mysqli->query($query)) {
+             if ($result = $mysqli->query($query)) {
 
-               /* fetch object array */
-               while ($row = $result->fetch_array(MYSQLI_NUM)) {
-                   $fullname = $row[1] . ', ' . $row[0];
-                   print_r ('<tr>
-                           <td><a href="#' . $fullname . '">' . $fullname . '</a></td>
-                           <td><a href="#' . $row[3] . '">' . $row[3] . '</a></td>
-                           <td>'.$row[6].'</td>
-                           <td>'.$row[7].'</td>'
-                           );
-                           if ($row[8] == 0) { print_r("<td>לא</td></tr>"); } 
-                           else { print_r("<td>כן</td></tr>");}
-                               }
+                 /* fetch object array */
+                 while ($row = $result->fetch_array(MYSQLI_NUM)) {
+                     $fullname = $row[1] . ', ' . $row[0];
+                     print_r ('<tr>
+                             <td><a href="#' . $fullname . '">' . $fullname . '</a></td>
+                             <td><a href="#' . $row[3] . '">' . $row[3] . '</a></td>
+                             <td>'.$row[6].'</td>
+                             <td>'.$row[7].'</td>'
+                             );
+                             if ($row[8] == 0) { print_r("<td>לא</td></tr>"); } 
+                             else { print_r("<td>כן</td></tr>");}
+                                 }
 
-               /* free result set */
-               $result->close();
-           }
-           ?>
-              
+                 /* free result set */
+                 $result->close();
+             }
+             ?>
+                
 
-       </tbody>
-    </table>
+         </tbody>
+      </table>
 
-    <script>
-      var table = $('table.myTable'),
-      thead = table.find('thead.stikyhead'),
+    </div>
+    <!-- <script>
+      var table = $('table#myTable'),
+      thead = table.find('thead#stikyhead'),
 
       fixed_thead,
 
@@ -61,7 +63,7 @@ require_once("../includes/functions.php");
         el.css('width', el.width());
       });
 
-      fixed_thead = thead.clone().prependTo('thead.stikyhead').hide();
+      fixed_thead = thead.clone().prependTo('thead#stikyhead').hide();
       // thead.after(fixed_thead);
 
       fixed_thead.css({
@@ -79,7 +81,7 @@ require_once("../includes/functions.php");
       });
 
 
-    </script>
+    </script> -->
     <!-- <div class="col-md-12 text-center">
       <ul class="pagination pagination-lg pager" id="myPager"></ul>
     </div>
