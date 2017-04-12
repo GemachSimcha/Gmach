@@ -1,6 +1,9 @@
 # Gmach
 
 
+TO VIEW APP  - OPEN INDEX/INSERT_FORM.PHP
+
+
 mar/27 dumped unneeded files&folders
 STILL strugglig with stickyheaders
 
