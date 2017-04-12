@@ -129,7 +129,7 @@ insertPerson($mysqli);
             <td></td>
               <td class="form-inline">
                <label for="installments">תשלומים</label><input type="checkbox" id="installments" name="installments">
-               <!-- <input type="number" name="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1" style="width: 31%"> -->
+               <input type="number" name="NumberOfPayments" id="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1" style="width: 31%">
               </td>
             </tr>
             <!-- 
@@ -138,8 +138,7 @@ insertPerson($mysqli);
                   need to be hidden and shown as needed
 
                                -->
-                    <div class="selectedMethod">
-                      <tr>
+                    <tr id="selectedMethod">
                         <td></td>
                         <td class="form-check">
                            <label class="form-check-label" for="monthly">
@@ -147,11 +146,11 @@ insertPerson($mysqli);
                            </label> 
                         </td>
                       </tr>
-                      <tr class="form-inline">
+                      <tr class="form-inline" id="selectedMethod">
                         <td></td>
                         <td class="no_spin"><input class="form-control" style="width:19%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input class="form-control" style="width:31%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
                       </tr>
-                      <tr>
+                      <tr id="selectedMethod">
                       <td></td>
                       <td class="form-inline">
                         
@@ -170,7 +169,7 @@ insertPerson($mysqli);
                         
                       </td>
                       </tr>
-                      <tr>
+                      <tr id="selectedMethod">
                         <td></td>
                         <td class="form-check">
                           <label for="" class="form-check-label" for="specificied">
@@ -180,7 +179,7 @@ insertPerson($mysqli);
                         </td>
                       </tr>                         
                       
-                      <tr>
+                      <tr id="selectedMethod">
                       <td></td>
                       <td class="form-inline">
                         
@@ -200,11 +199,10 @@ insertPerson($mysqli);
                       </td>
 
                       </tr>
-                      <tr class="installments form-inline">
+                      <tr class="installments form-inline" id="selectedMethod">
                         <td></td>
                         <td><input class="form-control" style="width:25%" type="number" name="installment_amount" id="installment_amount" placeholder="סכום"><input type="text" style="width:25%" name="installment_date" id="datepick3" placeholder="תאריך" class="form-control datepicker"></td>
                       </tr>
-                    </div>
 
 
             <tr>
@@ -299,11 +297,11 @@ insertPerson($mysqli);
     <div class="container-fluid">
       <div class="navbar-header navbar-right"><p class="navbar-brand">מידע ועדכונים</p></div>
       <ul class="nav nav-tabs navbar navbar-right" role="tablist">
-        <li role="presentation" class="active pull-right">
+        <li role="presentation" class="pull-right">
           <a role="tab" data-toggle="tab"
            href="#uncompleted">פעולות שטרם אושרו</a>
         </li>
-        <li role="presentation" class="pull-right">
+        <li role="presentation" class="pull-right active">
           <a role="tab" data-toggle="tab"
            href="#people">אנשים</a>
         </li>
@@ -319,7 +317,7 @@ insertPerson($mysqli);
         <h3>טבלת עפולות שטרם היו/אושרו</h3>
 
       </div> <!-- uncompleted tab -->
-      <div role="tabpanel" class="tab-pane" id="people">
+      <div role="tabpanel" class="tab-pane active" id="people">
 
       <?php include_once 'testscreen.php'; ?>
 

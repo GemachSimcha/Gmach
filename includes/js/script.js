@@ -19,8 +19,11 @@ $( "#dialog-link, #icons li" ).hover(
     });
 
 // toggle monthly or specific installments
-$( "installments" ).onchange = function() {
-  $( "installments" ).append("<input type="number" name="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1" style="width: 31%">")};
+$( "#NumberOfPayments,#selectedMethod" ).hide();
+// $( "#selectedMethod" ).hide();
+$( "#installments" ).change(function() {
+  $( "#NumberOfPayments" ).toggle();
+});
 
 
 
