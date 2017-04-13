@@ -97,13 +97,13 @@ insertPerson($mysqli);
             <tr class="form-inline">
                 <td><label for="Currency Method">מטבע וצורה</label></td>
                 <td>
-                    <select name="Currency" class="form-control" id="Currency" style="width: 22%">
+                    <select name="Currency" class="form-control" id="Currency">
                       <option value="shekel">שקל</option>
                       <option value="dollar">דולר</option>
                       <option value="euro">אירו</option>
                       <option value="other">אחר</option>
                     </select>
-                    <select name="Method" class="form-control" id="Method" style="width: 22%">
+                    <select name="Method" class="form-control" id="Method">
                       <option value="cash">מזומן</option>
                       <option value="check">צ'יק</option>
                       <option value="transfer">העברה בנקאית</option>
@@ -129,7 +129,7 @@ insertPerson($mysqli);
             <td></td>
               <td class="form-inline">
                <label for="installments">תשלומים</label><input type="checkbox" id="installments" name="installments">
-               <input type="number" name="NumberOfPayments" id="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1" style="width: 31%">
+               <input type="number" name="NumberOfPayments" id="NumberOfPayments" class="form-control" placeholder="מספר תשלומים" min="1" style="width: 50%">
               </td>
             </tr>
             <!-- 
@@ -146,11 +146,11 @@ insertPerson($mysqli);
                            </label> 
                         </td>
                       </tr>
-                      <tr class="form-inline" id="selectedMethod">
+                      <tr class="form-inline" id="monthlyDetails1">
                         <td></td>
                         <td class="no_spin"><input class="form-control" style="width:19%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input class="form-control" style="width:31%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
                       </tr>
-                      <tr id="selectedMethod">
+                      <tr id="monthlyDetails2">
                       <td></td>
                       <td class="form-inline">
                         
@@ -179,7 +179,7 @@ insertPerson($mysqli);
                         </td>
                       </tr>                         
                       
-                      <tr id="selectedMethod">
+                      <tr id="specificiedDetails1">
                       <td></td>
                       <td class="form-inline">
                         
@@ -199,7 +199,7 @@ insertPerson($mysqli);
                       </td>
 
                       </tr>
-                      <tr class="installments form-inline" id="selectedMethod">
+                      <tr class="installments form-inline" id="specificiedDetails2">
                         <td></td>
                         <td><input class="form-control" style="width:25%" type="number" name="installment_amount" id="installment_amount" placeholder="סכום"><input type="text" style="width:25%" name="installment_date" id="datepick3" placeholder="תאריך" class="form-control datepicker"></td>
                       </tr>

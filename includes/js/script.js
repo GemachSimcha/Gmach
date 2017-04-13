@@ -19,17 +19,21 @@ $( "#dialog-link, #icons li" ).hover(
     });
 
 // toggle monthly or specific installments
-$( "#NumberOfPayments,#selectedMethod" ).hide();
-// $( "#selectedMethod" ).hide();
+$( "#NumberOfPayments,#selectedMethod,#monthlyDetails1,#monthlyDetails2,#specificiedDetails1,#specificiedDetails2" ).hide();
 $( "#installments" ).change(function() {
-  $( "#NumberOfPayments" ).toggle();
+  $( "#NumberOfPayments,#selectedMethod" ).toggle();
+    $('input[type="radio"]').click(function() {
+     if($(this).val() == 'monthly') {
+        $( "#monthlyDetails1,#monthlyDetails2" ).toggle();
+  };
+      if ($(this).val() == 'specificied') {
+        $("#specificiedDetails1").toggle();
+/*        NEED TO CLONE #specificiedDetails2
+*/        // $("#specificiedDetails2").
+      }
 });
-
-
-
-
-
-
+});
+  
 
 
 } );
