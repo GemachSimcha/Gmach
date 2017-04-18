@@ -18,6 +18,7 @@ $( "#dialog-link, #icons li" ).hover(
         $( this ).removeClass( "ui-state-hover" );
     });
 
+
 // toggle monthly or specific installments
 $( "#NumberOfPayments,#selectedMethod,#monthlyDetails1,#monthlyDetails2,#specificiedDetails1,#specificiedDetails2" ).hide();
 $( "#installments" ).change(function() {
@@ -27,9 +28,17 @@ $( "#installments" ).change(function() {
         $( "#monthlyDetails1,#monthlyDetails2" ).toggle();
   };
       if ($(this).val() == 'specificied') {
-        $("#specificiedDetails1").toggle();
+        $("#specificiedDetails1,#specificiedDetails2").toggle();
+
+
 /*        NEED TO CLONE #specificiedDetails2
-*/        // $("#specificiedDetails2").
+*/       
+        var i
+        var $sd = $( "#specificiedDetails2" );
+        var NumberOFPayments = $("#NumberOfPayments").val();
+        for (var i = 1; i < NumberOFPayments; i++) {
+          $( "#specificiedDetails2" ).after($sd.clone());
+        }
       }
 });
 });
