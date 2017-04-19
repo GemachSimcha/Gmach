@@ -143,6 +143,17 @@ $loan_transaction_stmt->close();
 
             // needs to be foreach transaction
 
+                       $installment_stmt = $mysqli->prepare($installment_insert);
+                
+                /***********************************************
+                /
+                /       foreach NumbeOfPayments                */
+
+            if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
+                echo "binding did not work</br>";}
+
+            $installment_stmt->execute();
+
 
         }
 
