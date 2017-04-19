@@ -38,7 +38,7 @@ $( "#installments" ).change(function() {
         var $sd = $( "#specificiedInstallment" );
         var NumberOFPayments = $("#NumberOfPayments").val();
         for (var i = 1; i < NumberOFPayments; i++) {
-          $( "#specificiedInstallment" ).after($sd.clone().attr('id', 'specificiedInstallment' + id)); 
+          $( "#specificiedInstallment" ).after($sd.clone().attr('id', 'specificiedInstallment' + id));/*("datepick3").prop('id', 'datepick3' + id); */
             id--;
         
         }

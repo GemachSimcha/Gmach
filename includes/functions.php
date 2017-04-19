@@ -135,13 +135,24 @@ $loan_transaction_stmt->close();
 
             $installment_currency = $_POST['installment_Currency'];
             $installment_method = $_POST['installment_Method'];
+            
+
+            //  foreach transaction
+            $installments = 1;
+            while ( $installments <= $_POST['NumberOfPayments']) {
+                # code...
+
+
+
+
+                $installments++;
+            }
             $installment_amount = $_POST['installment_amount'];
             $installment_date = $_POST['installment_date'];
 
 
             $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
 
-            // needs to be foreach transaction
 
                        $installment_stmt = $mysqli->prepare($installment_insert);
                 
