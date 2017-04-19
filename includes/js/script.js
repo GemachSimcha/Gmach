@@ -20,24 +20,27 @@ $( "#dialog-link, #icons li" ).hover(
 
 
 // toggle monthly or specific installments
-$( "#NumberOfPayments,#selectedMethod,#monthlyDetails1,#monthlyDetails2,#specificiedDetails1,#specificiedDetails2" ).hide();
+$( "#NumberOfPayments,#selectedMethod,#monthlyDetails1,#monthlyDetails2,#specificiedInstallment,#specificiedDetails" ).hide();
 $( "#installments" ).change(function() {
-  $( "#NumberOfPayments,#selectedMethod" ).toggle();
+  $( "#NumberOfPayments,#selectedMethod" ).show();
     $('input[type="radio"]').click(function() {
      if($(this).val() == 'monthly') {
-        $( "#monthlyDetails1,#monthlyDetails2" ).toggle();
-  };
+        $( "#monthlyDetails1,#monthlyDetails2" ).show();
+  }
       if ($(this).val() == 'specificied') {
-        $("#specificiedDetails1,#specificiedDetails2").toggle();
+        $("#specificiedInstallment,#specificiedDetails").show();
 
 
 /*        NEED TO CLONE #specificiedDetails2
 */       
-        var i
-        var $sd = $( "#specificiedDetails2" );
+        var i;
+        var id = $("#NumberOfPayments").val();;
+        var $sd = $( "#specificiedInstallment" );
         var NumberOFPayments = $("#NumberOfPayments").val();
         for (var i = 1; i < NumberOFPayments; i++) {
-          $( "#specificiedDetails2" ).after($sd.clone());
+          $( "#specificiedInstallment" ).after($sd.clone().attr('id', 'specificiedInstallment' + id)); 
+            id--;
+        
         }
       }
 });
