@@ -133,10 +133,10 @@ $loan_transaction_stmt->close();
 
             /*code for specified installments*/
 
-            $installment_date = $_POST['installment_date'];
             $installment_currency = $_POST['installment_Currency'];
             $installment_method = $_POST['installment_Method'];
             $installment_amount = $_POST['installment_amount'];
+            $installment_date = $_POST['installment_date'];
 
 
             $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";

@@ -42,7 +42,8 @@ $( "#installments" ).change(function() {
             id--;
         
         }
-      }
+        $( "#specificiedInstallment" ).attr('id', 'specificiedInstallment1');
+              }
 });
 });
   
