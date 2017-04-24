@@ -1,13 +1,11 @@
 # Gmach
 
 
-TO VIEW APP  - OPEN INDEX/INSERT_FORM.PHP
+TO VIEW APP  - OPEN INDEX.PHP
 
 
-mar/27 dumped unneeded files&folders
 STILL strugglig with stickyheaders
 
-mar/14 to preview website download הוסף אנשים חדשים.html and הוסף אנשים חדשים_files
 
 weds
 datepickers working, now need to polish php and mysql, then return to hide/show as needed on clientside
