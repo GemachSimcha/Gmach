@@ -6,6 +6,8 @@ $mysqli = new mysqli("localhost", "root", "GemachSimcha", "gmach");
 
 $mysqli->set_charset("utf8");
 
+     
+if (isset($_POST['newloaner_submit'])) {
     /*   variables for insert functions     */
 
     $firstname = $_POST['firstname'];
@@ -21,9 +23,6 @@ $mysqli->set_charset("utf8");
     $DateOfLoan = $_POST['DateOfLoan'] ;
     $DateOfFinalPayment = $_POST['DateOfFinalPayment'] ;
     $Areivim = $_POST['Areivim'] ;
-
- 
-if ($_POST['submit']){            
 
 // INSERT PERSON FOLDER
     $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
@@ -110,7 +109,7 @@ if ($_POST['submit']){
 
             $installment_stmt->close();
 
-        }  // radio = specified
+        }  // end monthly installments
 
         /*code for specified installments*/
         elseif ($_POST['options'] === "specified") {
@@ -141,12 +140,8 @@ if ($_POST['submit']){
      else {
         echo "no תשלומים";   // can edit this message 
     }
-}
+} // end of ($_POST['submit'])
 
-
-
-
-} 
 
 
 
