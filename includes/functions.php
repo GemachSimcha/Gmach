@@ -144,8 +144,6 @@ if (isset($_POST['newloaner_submit'])) {
 
 
 
-
-
 function insertloan($mysqli){
 
     // 
@@ -235,10 +233,3 @@ function insertloan($mysqli){
     }
 
 }
-?>
-   
-
-
-
-
-
