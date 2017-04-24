@@ -54,7 +54,7 @@ if (isset($_POST['newloaner_submit'])) {
 
 // INSRT repay installments into TRANSACTION FOLDER
       
-    if ($_POST['installments']) {
+    if (isset($_POST['installments'])) {
 
         // if selected radio = monthly
         /*code for monthly installments*/
@@ -138,7 +138,7 @@ if (isset($_POST['newloaner_submit'])) {
         }   // end code for specified transactions
     }  // end of all installments
      else {
-        echo "no תשלומים";   // can edit this message 
+        echo "<div></div>";   // can edit this message 
     }
 } // end of ($_POST['submit'])
 
