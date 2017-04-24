@@ -144,92 +144,88 @@ if (isset($_POST['newloaner_submit'])) {
 
 
 
-function insertloan($mysqli){
-
-    // 
+if (isset($_POST['oldLoaner_submit'])) {
+    
 
     $loan_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments/*, FutureInstallments, DoneTransactions*/) VALUE (?,?,?,?,?,?,?,?,?/*,?,?*/)";
 
     $loan_stmt = $mysqli->prepare($loan_insert);
 
-                $firstname = $_POST['firstname'];
-                $cellphone = $_POST['cellphone'];
-                $SumOfLoan = $_POST['TotalLoan'];
-                $currency = $_POST['Currency'];
-                $method = $_POST['Method'];
-                $DateOfLoan = $_POST['DateOfLoan'];
-                $DateOfFinalPayment = $_POST['DateOfFinalPayment'];
-                $Areivim = $_POST['Areivim'];
-                $NumberOfPayments = $_POST['NumberOfPayments'];
-                $_SESSION['NumberOfPayments'] = $NumberOfPayments;
+            $firstname = $_POST['firstname'];
+            $cellphone = $_POST['cellphone'];
+            $SumOfLoan = $_POST['TotalLoan'];
+            $currency = $_POST['Currency'];
+            $method = $_POST['Method'];
+            $DateOfLoan = $_POST['DateOfLoan'];
+            $DateOfFinalPayment = $_POST['DateOfFinalPayment'];
+            $Areivim = $_POST['Areivim'];
+            $NumberOfPayments = $_POST['NumberOfPayments'];
+            $_SESSION['NumberOfPayments'] = $NumberOfPayments;
+                // $FutureInstallments = $_POST['FutureInstallments'];
+                // $DoneTransactions = $_POST['DoneTransactions'];
 
-                    // $FutureInstallments = $_POST['FutureInstallments'];
-                    // $DoneTransactions = $_POST['DoneTransactions'];
+    
+    if(!$loan_stmt->bind_param("sssssssss",$firstname, $cellphone, $SumOfLoan, $currency, $method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments)){
+            echo "bind_param not working!";
+            } 
+     // $loan_stmt->bind_param("sssssssssss",$firstname, $cellphone, $SumOfLoans, $currency, $method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments, $FutureInstallments, $DoneTransactions);
 
-        if($_POST['submit']) {
-            if(!$loan_stmt->bind_param("sssssssss",$firstname, $cellphone, $SumOfLoan, $currency, $method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments)){
-        echo "bind_param not working!";
-        } 
-         // $loan_stmt->bind_param("sssssssssss",$firstname, $cellphone, $SumOfLoans, $currency, $method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments, $FutureInstallments, $DoneTransactions);
+    //EXECUTE QUERY
+    elseif (!$loan_stmt->execute()) {
+            echo '<h4 style="color:red; margin-right: 50px">כנראה שאני כבר ברשימה... (או שהפרטים לא מדוייקים?)</h4>';
+    }
 
-        //EXECUTE QUERY
-        elseif (!$loan_stmt->execute()) {
-                echo '<h4 style="color:red; margin-right: 50px">כנראה שאני כבר ברשימה... (או שהפרטים לא מדוייקים?)</h4>';
-        }
+    //CLOSE EXECUTE
+    $loan_stmt->close();
+
+    // // // // loan transaction
+
+    $transactions_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $loan_stmt = $mysqli->prepare($loan_insert);
 
 
-        //CLOSE EXECUTE
-        $loan_stmt->close();
+    // update old sum of loans
+            // retreive old sum
+            $old_total_select = "SELECT SumOfLoans FROM person WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
+            $old_TotalLoan = $mysqli->query($old_total_select);
+            $total_row = $old_TotalLoan->fetch_array(MYSQLI_NUM);
+            $All_Loans = $total_row[0] + $SumOfLoan;
+            $old_TotalLoan->close();
 
-        // // // // loan transaction
+            // add new sum
+            $new_total_select ="UPDATE person SET SumOfLoans = '".$All_Loans."'  WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
+            $new_total = $mysqli->query($new_total_select);
 
+            // installments
+                // if ($NumberOfPayments > 1) {
+                //     header('Location: ../includes/installments.php');
+                // }
+
+            // transactions
         $transactions_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $loan_stmt = $mysqli->prepare($loan_insert);
+
+            $transactions_stmt = $mysqli->prepare($transactions_insert);
+
+                $transaction_date = $_POST['DateOfInstallment'];
+                $transaction_currency = $_POST['transaction_Currency'];
+                $transaction_method = $_POST['transaction_Method'];
+                $transaction_amount = $_POST['transaction_Amount'];
+                $Explaination = 'RepayLoan';
 
 
+            if($_POST['transaction_submit']) {
+                
+                /***********************************************
+                /
+                /       foreach NumbeOfPayments                */
 
-        // update old sum of loans
-                // retreive old sum
-                $old_total_select = "SELECT SumOfLoans FROM person WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
-                $old_TotalLoan = $mysqli->query($old_total_select);
-                $total_row = $old_TotalLoan->fetch_array(MYSQLI_NUM);
-                $All_Loans = $total_row[0] + $SumOfLoan;
-                $old_TotalLoan->close();
+                if(!$transaction_stmt->bind_param("sssssssss",$firstname, $cellphone, $transaction_date, $transaction_currency, $transaction_method, $transaction_amount, $Explaination)){
+            echo "bind_param not working!";
+            } 
 
-                // add new sum
-                $new_total_select ="UPDATE person SET SumOfLoans = '".$All_Loans."'  WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
-                $new_total = $mysqli->query($new_total_select);
 
-        // installments
-            if ($NumberOfPayments > 1) {
-                header('Location: ../includes/installments.php');
             }
-
-        // transactions
-            $transactions_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-                $transactions_stmt = $mysqli->prepare($transactions_insert);
-
-                    $transaction_date = $_POST['DateOfInstallment'];
-                    $transaction_currency = $_POST['transaction_Currency'];
-                    $transaction_method = $_POST['transaction_Method'];
-                    $transaction_amount = $_POST['transaction_Amount'];
-                    $Explaination = 'RepayLoan';
-
-
-                if($_POST['transaction_submit']) {
-                    
-                    /***********************************************
-                    /
-                    /       foreach NumbeOfPayments                */
-
-                    if(!$transaction_stmt->bind_param("sssssssss",$firstname, $cellphone, $transaction_date, $transaction_currency, $transaction_method, $transaction_amount, $Explaination)){
-                echo "bind_param not working!";
-                } 
-
-
-                }
-        
+    
     }
 
 }

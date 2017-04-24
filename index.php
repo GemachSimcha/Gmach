@@ -349,7 +349,7 @@ include_once("includes/inserts.php");
                 <tr>
                 <td></td>
                   <td>
-                        <input type="submit" name="oldloaner_submit" class="btn btn-block" value="הוסף" style="width: 50%">
+                        <input type="submit" name="oldLoaner_submit" class="btn btn-block" value="הוסף" style="width: 50%">
                   </td>
                 </tr>                   
                 
