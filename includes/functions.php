@@ -112,54 +112,34 @@ if ($_POST['submit']){
 
         }  // radio = specified
 
-
+        /*code for specified installments*/
         elseif ($_POST['options'] === "specified") {
-
-            /*code for specified installments*/
-
+                // constant variables
             $installment_currency = $_POST['installment_Currency'];
             $installment_method = $_POST['installment_Method'];
             
-
             //  foreach transaction
             $installments = 1;
-            while ( $installments <= $_POST['NumberOfPayments']) {
-                # code...
+            while ($installments <= $_POST['NumberOfPayments']) {
+
                 $installment_amount = $_POST['installment_amount'];
                 $installment_date = $_POST['installment_date'];
 
-
                 $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
 
-
-                           $installment_stmt = $mysqli->prepare($installment_insert);
+                $installment_stmt = $mysqli->prepare($installment_insert);
                     
-                    /***********************************************
-                    /
-                    /       foreach NumbeOfPayments                */
-
                 if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
                     echo "binding did not work</br>";}
 
                 $installment_stmt->execute();
 
-
-
-
                 $installments++;
-            }
-
-
-
-        }
-
-
-
-
-        
-
-    } else {
-        echo "no תשלומים";
+            }   // end foreach transaction
+        }   // end code for specified transactions
+    }  // end of all installments
+     else {
+        echo "no תשלומים";   // can edit this message 
     }
 }
 
