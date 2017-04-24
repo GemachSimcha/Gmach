@@ -7,7 +7,7 @@ $mysqli = new mysqli("localhost", "root", "Skype2015", "gmach");
 $mysqli->set_charset("utf8");
 
 
-function insertPerson($mysqli){ 
+ 
 
 if ($_POST['submit']){
 
@@ -35,7 +35,7 @@ if ($_POST['submit']){
     //execute query
     if (!$person_stmt->execute()) {
             echo '<h4 style="color:red; margin-right: 50px">כנראה שאני כבר ברשימה... (או שהפרטים לא מדוייקים?)</h4>';
-    } 
+        } 
 
 
 // INSERT INTO LOAN  FOLDER 
@@ -97,7 +97,8 @@ $loan_transaction_stmt->close();
                 /       foreach NumbeOfPayments                */
 
             if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
-                echo "binding did not work</br>";}
+                echo "binding did not work</br>";
+            }
 
             $installment_stmt->execute();
 
@@ -120,16 +121,14 @@ $loan_transaction_stmt->close();
                 $installment_stmt->execute();
 
                 $i++;  
-            }
-
-
-
-            
+            } 
 
 
 
         }  // radio = specified
-            elseif ($_POST['options'] === "specified") {
+
+
+        elseif ($_POST['options'] === "specified") {
 
             /*code for specified installments*/
 
@@ -141,29 +140,30 @@ $loan_transaction_stmt->close();
             $installments = 1;
             while ( $installments <= $_POST['NumberOfPayments']) {
                 # code...
+                $installment_amount = $_POST['installment_amount'];
+                $installment_date = $_POST['installment_date'];
+
+
+                $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
+
+
+                           $installment_stmt = $mysqli->prepare($installment_insert);
+                    
+                    /***********************************************
+                    /
+                    /       foreach NumbeOfPayments                */
+
+                if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
+                    echo "binding did not work</br>";}
+
+                $installment_stmt->execute();
 
 
 
 
                 $installments++;
             }
-            $installment_amount = $_POST['installment_amount'];
-            $installment_date = $_POST['installment_date'];
 
-
-            $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
-
-
-                       $installment_stmt = $mysqli->prepare($installment_insert);
-                
-                /***********************************************
-                /
-                /       foreach NumbeOfPayments                */
-
-            if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
-                echo "binding did not work</br>";}
-
-            $installment_stmt->execute();
 
 
         }
