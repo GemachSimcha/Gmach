@@ -148,7 +148,7 @@ insertPerson($mysqli);
                       </tr>
                       <tr class="form-inline" id="monthlyDetails1">
                         <td></td>
-                        <td class="no_spin"><input class="form-control" style="width:19%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input class="form-control" style="width:31%" type="number" name="DayOfMonth" id="DayOfMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
+                        <td class="no_spin"><input class="form-control" style="width:19%" type="number" name="monthly_Amount" id="monthly_Amount" placeholder="סכום"><input class="form-control" style="width:31%" type="number" name="DayInMonth" id="DayInMonth" placeholder="תאריך חודשי" min="1" max="31"></td>
                       </tr>
                       <tr id="monthlyDetails2">
                       <td></td>

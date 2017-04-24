@@ -35,51 +35,45 @@ if ($_POST['submit']){
             echo '<h4 style="color:red; margin-right: 50px">כנראה שאני כבר ברשימה... (או שהפרטים לא מדוייקים?)</h4>';
         } 
 
-
 // INSERT INTO LOAN  FOLDER 
     $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments/*, FutureInstallments, DoneTransactions*/) VALUE (?,?,?,?,?,?,?,?,?/*,?,?*/)";
     $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
     $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $SumOfLoans, $currency, $method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
     $loan_folder_stmt->execute();
     
-
-// INSRT loan transaction FOLDER
+// INSRT loan transaction into TRANSACTION FOLDER
     $loan_transaction_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'Loan')";
     $loan_transaction_stmt = $mysqli->prepare($loan_transaction_insert);
     $loan_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfLoan, $currency, $method, $SumOfLoans);
     $loan_transaction_stmt->execute();
 
+        //CLOSE EXECUTE
+        $person_stmt->close();
+        $loan_folder_stmt->close();
+        $loan_transaction_stmt->close();
 
 
-//CLOSE EXECUTE
-$person_stmt->close();
-$loan_transaction_stmt->close();
-
-
-// installments   
+// INSRT repay installments into TRANSACTION FOLDER
       
     if ($_POST['installments']) {
 
+        // if selected radio = monthly
+        /*code for monthly installments*/
+        if ($_POST['options'] === "monthly") {            
 
-        // radio = monthly
-        if ($_POST['options'] === "monthly") {
-
-            /*code for monthly installments*/
-
-
-            // to convert selected day of every month to correct mysql date format            
+            // to convert selected day in the month to correct mysql date format            
             $nowDate = new DateTime();
-
-            $X = $_POST['DayOfMonth'];
             $d = $nowDate->format('d');
             $m = $nowDate->format('m');
             $Y = $nowDate->format('Y');
+
+            $X = $_POST['DayInMonth'];            
 
             $nowDate->setDate($Y , $m , $X);
 
             if ($d>$X) {
                 $nowDate->modify( '+1 month');
-            } 
+            } // end of date conversion
 
             $installment_date = $nowDate->format('Y-m-d');
             $installment_currency = $_POST['monthly_Currency'];
@@ -90,15 +84,13 @@ $loan_transaction_stmt->close();
 
             $installment_stmt = $mysqli->prepare($installment_insert);
                 
-                /***********************************************
-                /
-                /       foreach NumbeOfPayments                */
-
             if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_currency, $installment_method, $installment_amount)) {
                 echo "binding did not work</br>";
             }
 
             $installment_stmt->execute();
+
+            /*  foreach NumbeOfPayments    */
 
             $i = 1;
             while ($i <= $NumberOfPayments) {
@@ -108,20 +100,15 @@ $loan_transaction_stmt->close();
                 $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
 
                 $installment_stmt = $mysqli->prepare($installment_insert);
-                    
-                    /***********************************************
-                    /
-                    /       foreach NumbeOfPayments                */
 
                 if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $next_installment_date, $installment_currency, $installment_method, $installment_amount)) {
                     echo "binding did not work</br>";}
 
                 $installment_stmt->execute();
-
                 $i++;  
             } 
 
-
+            $installment_stmt->close();
 
         }  // radio = specified
 
