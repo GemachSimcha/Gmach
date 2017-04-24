@@ -14,7 +14,7 @@
 
 //connection variables
 
-$mysqli = new mysqli("localhost", "root", "Skype2015", "gmach");
+$mysqli = new mysqli("localhost", "root", "GemachSimcha", "gmach");
 
 
 $query = "SHOW tables FROM gmach";

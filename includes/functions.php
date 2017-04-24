@@ -2,30 +2,28 @@
 
 echo '<p>בס"ד</p>';
 
-$mysqli = new mysqli("localhost", "root", "Skype2015", "gmach");
+$mysqli = new mysqli("localhost", "root", "GemachSimcha", "gmach");
 
 $mysqli->set_charset("utf8");
 
+    /*   variables for insert functions     */
+
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $telephone = $_POST['telephone'];
+    $cellphone = $_POST['cellphone'];
+    $address = $_POST['address'];
+    $idnumber = $_POST['idnumber'];
+    $SumOfLoans = $_POST['TotalLoan'];
+    $NumberOfPayments = $_POST['NumberOfPayments'];
+    $currency = $_POST['Currency'] ;
+    $method = $_POST['Method'] ;
+    $DateOfLoan = $_POST['DateOfLoan'] ;
+    $DateOfFinalPayment = $_POST['DateOfFinalPayment'] ;
+    $Areivim = $_POST['Areivim'] ;
 
  
-
-if ($_POST['submit']){
-
-
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $telephone = $_POST['telephone'];
-            $cellphone = $_POST['cellphone'];
-            $address = $_POST['address'];
-            $idnumber = $_POST['idnumber'];
-            $SumOfLoans = $_POST['TotalLoan'];
-            $NumberOfPayments = $_POST['NumberOfPayments'];
-            $currency = $_POST['Currency'] ;
-            $method = $_POST['Method'] ;
-            $DateOfLoan = $_POST['DateOfLoan'] ;
-            $DateOfFinalPayment = $_POST['DateOfFinalPayment'] ;
-            $Areivim = $_POST['Areivim'] ;
-
+if ($_POST['submit']){            
 
 // INSERT PERSON FOLDER
     $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
