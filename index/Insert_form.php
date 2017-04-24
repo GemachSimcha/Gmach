@@ -28,6 +28,11 @@ include_once("../includes/functions.php");
 <div class="row">
   <section class="col-xs-12">
 
+     <div class="jumbotron text-center">
+     	<h1>גמ"ח חסדי השם</h1>
+     </div>
+
+
 
 <nav class="navbar clearfix">
     <div class="container-fluid">

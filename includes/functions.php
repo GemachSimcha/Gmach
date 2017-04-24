@@ -30,10 +30,8 @@ if (isset($_POST['newloaner_submit'])) {
     $person_stmt = $mysqli->prepare($person_insert);
     $person_stmt->bind_param("sssssss",$firstname, $lastname, $idnumber, $cellphone, $telephone, $address, $SumOfLoans);
     //execute query
-    if (!$person_stmt->execute()) {
-            echo '<h4 style="color:red; margin-right: 50px">כנראה שאני כבר ברשימה... (או שהפרטים לא מדוייקים?)</h4>';
-        } 
-
+    $person_stmt->execute();    // can use: if (!$person_stmt->execute()) with error msg
+    
 // INSERT INTO LOAN  FOLDER 
     $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments/*, FutureInstallments, DoneTransactions*/) VALUE (?,?,?,?,?,?,?,?,?/*,?,?*/)";
     $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
