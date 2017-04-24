@@ -1,10 +1,7 @@
 <?php
 
-include_once("../includes/functions.php");
+include_once("includes/inserts.php");
 
-// may not need as all on page
-// session_start(); 
-// insertPerson($mysqli);
 
 ?>
 <!DOCTYPE html>
@@ -12,11 +9,10 @@ include_once("../includes/functions.php");
 <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../includes/styles/bootstrap.min.css">
-    <link href="../includes/styles/styles.css" media="all" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../includes/js/jquery-ui-calendar/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="includes/styles/bootstrap.min.css">
+    <link href="includes/styles/styles.css" media="all" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="includes/js/jquery-ui-calendar/jquery-ui.css">
     
-
 
 
 	<title>הוסף אנשים חדשים</title>
@@ -577,8 +573,50 @@ include_once("../includes/functions.php");
       </div> <!-- uncompleted tab -->
       <div role="tabpanel" class="tab-pane active" id="people">
 
-      <?php include_once 'testscreen.php'; ?>
+      <div class="window">
+        <table class="table table-bordered table-hover table-condensed" id="myTable" >
+           <thead id="stikyhead">
+               <tr>
+                   <th width="175">שם </th>
+                   <th>פלאפון</th>
+                   <th>סכום הלוואות</th>
+                   <th>סכום פקדונות</th>
+                   <th>פעיל</th>
+               </tr>
+           </thead>
 
+           <tbody id="myTableBody">
+                   
+                       <?php
+
+               $query = "SELECT * FROM Person";
+
+               if ($result = $mysqli->query($query)) {
+
+                   /* fetch object array */
+                   while ($row = $result->fetch_array(MYSQLI_NUM)) {
+                       $fullname = $row[1] . ', ' . $row[0];
+                       print_r ('<tr>
+                               <td><a href="#' . $fullname . '">' . $fullname . '</a></td>
+                               <td><a href="#' . $row[3] . '">' . $row[3] . '</a></td>
+                               <td>'.$row[6].'</td>
+                               <td>'.$row[7].'</td>'
+                               );
+                               if ($row[8] == 0) { print_r("<td>לא</td></tr>"); } 
+                               else { print_r("<td>כן</td></tr>");}
+                                   }
+
+                   /* free result set */
+                   $result->close();
+               }
+               ?>
+                  
+
+           </tbody>
+        </table>
+
+      </div>
+      
       </div> <!-- people tab -->
       <div role="tabpanel" class="tab-pane" id="changes">
 
@@ -593,10 +631,10 @@ include_once("../includes/functions.php");
   
 
 
-  <script src="../includes/js/jquery-3.1.1.min.js"></script>
-  <script src="../includes/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="../includes/js/jquery-ui-calendar/jquery-ui.js"></script>
-  <script type="text/javascript" src="../includes/js/script.js"></script>
+  <script src="includes/js/jquery-3.1.1.min.js"></script>
+  <script src="includes/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="includes/js/jquery-ui-calendar/jquery-ui.js"></script>
+  <script type="text/javascript" src="includes/js/script.js"></script>
 
 
 
