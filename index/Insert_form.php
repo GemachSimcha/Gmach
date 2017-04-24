@@ -30,6 +30,7 @@ include_once("../includes/functions.php");
 
      <div class="jumbotron text-center">
      	<h1>גמ"ח חסדי השם</h1>
+     	<h3>יתרתך להיום הוא:<span id="balance"></span></h3>
      </div>
 
 
