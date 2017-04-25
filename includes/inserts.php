@@ -2,7 +2,18 @@
 
 echo '<p>בס"ד</p>';
 
-$mysqli = new mysqli("localhost", "root", "GemachSimcha", "gmach");
+defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
+
+defined('SITE_ROOT') ? null :
+  define('SITE_ROOT', DS.'wamp'.DS.'www'.DS.'gmach');
+defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT.DS.'includes');
+// Database Constants
+defined('DB_SERVER') ? null : define("DB_SERVER", "localhost");
+defined('DB_USER') ? null :define("DB_USER", "root");
+defined('DB_PASS') ? null :define("DB_PASS", "GemachSimcha");
+defined('DB_NAME') ? null :define("DB_NAME", "gmach");
+
+$mysqli = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 
 $mysqli->set_charset("utf8");
 
