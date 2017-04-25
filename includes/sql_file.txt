@@ -1,0 +1,108 @@
+ "CREATE DATABASE IF NOT EXISTS `gold` DEFAULT CHARACTER SET utf8 ;
+USE `gold` ;
+
+-- -----------------------------------------------------
+-- Table `gold`.`person`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gold`.`person` (
+  `FirstName` VARCHAR(25) NOT NULL,
+  `LastName` VARCHAR(15) NOT NULL,
+  `TeudatZehut` VARCHAR(15) NULL DEFAULT NULL,
+  `Cellular` VARCHAR(15) NOT NULL,
+  `HomePhone` VARCHAR(15) NULL DEFAULT NULL,
+  `Address` VARCHAR(45) NULL DEFAULT NULL,
+  `SumOfLoans` VARCHAR(10) NULL DEFAULT NULL,
+  `SumOfDeposits` VARCHAR(10) NULL DEFAULT NULL,
+  `isActive` TINYINT(1) NULL DEFAULT '1',
+  PRIMARY KEY (`FirstName`, `Cellular`),
+  UNIQUE INDEX `Cellular_UNIQUE` (`Cellular` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `gold`.`deposit`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gold`.`deposit` (
+  `idDeposit` INT(11) NOT NULL AUTO_INCREMENT,
+  `person_FirstName` VARCHAR(25) NOT NULL,
+  `person_Cellular` VARCHAR(15) NOT NULL,
+  `TotalDeposit` VARCHAR(10) NULL DEFAULT NULL,
+  `Currency` ENUM('Shekel', 'Dollar', 'Euro', 'Other') NULL DEFAULT 'Shekel',
+  `Method` ENUM('Cash', 'Check', 'Transfer', 'HoraatKeva', 'CreditCard') NULL DEFAULT 'Cash',
+  `DateOfDeposit` DATE NULL DEFAULT NULL,
+  `DateOfWithdrawal` DATE NULL DEFAULT NULL,
+  `TransactionsDone` TEXT NULL DEFAULT NULL,
+  `TransactionsFuture` TEXT NULL DEFAULT NULL,
+  `isActive` TINYINT(1) NULL DEFAULT NULL,
+  UNIQUE INDEX `idDeposit_UNIQUE` (`idDeposit` ASC),
+  INDEX `fk_deposit_person1_idx` (`person_FirstName` ASC, `person_Cellular` ASC),
+  CONSTRAINT `fk_deposit_person1`
+    FOREIGN KEY (`person_FirstName` , `person_Cellular`)
+    REFERENCES `gold`.`person` (`FirstName` , `Cellular`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `gold`.`loan`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gold`.`loan` (
+  `idLoan` INT(11) NOT NULL AUTO_INCREMENT,
+  `person_FirstName` VARCHAR(25) NOT NULL,
+  `person_Cellular` VARCHAR(15) NOT NULL,
+  `TotalLoan` VARCHAR(10) NULL DEFAULT NULL,
+  `Currency` ENUM('Shekel', 'Dollar', 'Euro') NOT NULL DEFAULT 'Shekel',
+  `Method` ENUM('Cash', 'Check', 'CreditCard', 'Transfer', 'HoraatKeva') NULL DEFAULT 'Cash',
+  `DateOfLoan` DATE NULL DEFAULT NULL,
+  `DateOfFinalPayment` DATE NULL DEFAULT NULL,
+  `Areivim` VARCHAR(70) NULL DEFAULT NULL,
+  `NumberOfPayments` VARCHAR(4) NULL DEFAULT NULL,
+  `FutureInstallments` TEXT NULL DEFAULT NULL,
+  `DoneTransactions` TEXT NULL DEFAULT NULL,
+  `isActive` TINYINT(1) NULL DEFAULT '1',
+  UNIQUE INDEX `idLoan_UNIQUE` (`idLoan` ASC),
+  INDEX `person_FirstName` (`person_FirstName` ASC),
+  INDEX `fk_loan_person_idx` (`person_FirstName` ASC, `person_Cellular` ASC),
+  CONSTRAINT `fk_loan_person`
+    FOREIGN KEY (`person_FirstName` , `person_Cellular`)
+    REFERENCES `gold`.`person` (`FirstName` , `Cellular`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 85
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `gold`.`transactions`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gold`.`transactions` (
+  `idTransactions` INT(11) NOT NULL AUTO_INCREMENT,
+  `loan_person_FirstName` VARCHAR(25) NULL DEFAULT NULL,
+  `loan_person_Cellular` VARCHAR(15) NULL DEFAULT NULL,
+  `deposit_person_FirstName` VARCHAR(25) NULL DEFAULT NULL,
+  `deposit_person_Cellular` VARCHAR(15) NULL DEFAULT NULL,
+  `Date` DATE NULL DEFAULT NULL,
+  `Currency` ENUM('Shekel', 'Dollar', 'Euro', 'other') NULL DEFAULT 'Shekel',
+  `Method` ENUM('Cash', 'Check', 'Transfer', 'CreditCard', 'HoraatKeva') NULL DEFAULT 'Cash',
+  `Amount` VARCHAR(10) NULL DEFAULT NULL,
+  `Explaination` ENUM('Loan', 'RepayLoan', 'Deposit', 'WithdrawDeposit', 'Donation') NULL DEFAULT NULL,
+  PRIMARY KEY (`idTransactions`),
+  INDEX `fk_transactions_deposit1_idx` (`deposit_person_FirstName` ASC, `deposit_person_Cellular` ASC),
+  INDEX `fk_transactions_loan1_idx` (`loan_person_FirstName` ASC, `loan_person_Cellular` ASC),
+  CONSTRAINT `fk_transactions_deposit1`
+    FOREIGN KEY (`deposit_person_FirstName` , `deposit_person_Cellular`)
+    REFERENCES `gold`.`deposit` (`person_FirstName` , `person_Cellular`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transactions_loan1`
+    FOREIGN KEY (`loan_person_FirstName` , `loan_person_Cellular`)
+    REFERENCES `gold`.`loan` (`person_FirstName` , `person_Cellular`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 382
+DEFAULT CHARACTER SET = utf8;
