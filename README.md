@@ -1,17 +1,13 @@
 # Gmach
 
 
-TO VIEW APP  - OPEN INDEX.PHP
-
-
-STILL strugglig with stickyheaders
-
-
-weds
-datepickers working, now need to polish php and mysql, then return to hide/show as needed on clientside
-
-Rosh chodesh adar
-attemting to get datepicker set up, but isnt working the second time on insert.php line 90?
+TO VIEW APP  - 
+1   Download or clone
+2   a)  Edit Database settings in file: 'includes/inserts.php' on lines 11,12,13
+    b)  Edit site-root on line 8
+    
+3   OPEN INDEX.PHP
 
 
 
+Please note: This site is still under testing and construction!
