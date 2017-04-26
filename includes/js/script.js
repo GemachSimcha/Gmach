@@ -46,7 +46,11 @@ $( "#installments" ).change(function() {
               }
 });
 });
-  
+
+$( "#newloaner_modal" ).click(function(){
+  $( "#myModal" ).modal({backdrop: "static"});
+});
+
 
 
 } );
