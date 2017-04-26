@@ -11,16 +11,18 @@ defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT.DS.'includes');
 defined('DB_SERVER') ? null : define("DB_SERVER", "localhost");
 defined('DB_USER') ? null :define("DB_USER", "root");
 defined('DB_PASS') ? null :define("DB_PASS", "GemachSimcha");
-defined('DB_NAME') ? null :define("DB_NAME", "gold");
+defined('DB_NAME') ? null :define("DB_NAME", "gmach");
 
-    $mysqli = new mysqli(DB_SERVER, DB_USER, DB_PASS);
+    $new_database = new mysqli(DB_SERVER, DB_USER, DB_PASS);
     $query_file = LIB_PATH.DS.'sql_file.txt';
     $query_file_open = fopen($query_file, 'r');
     $sql = fread($query_file_open, filesize($query_file));
     fclose($query_file_open);
-    $mysqli->query($sql);
-   
+    $new_database->multi_query($sql);
+    mysqli_close($new_database);
 
+   
+$mysqli = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
 $mysqli->set_charset("utf8");
 
      
