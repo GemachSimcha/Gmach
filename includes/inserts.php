@@ -69,7 +69,7 @@ if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
             $loan_transaction_stmt->close();
 
 
-    // INSERT repay installments into TRANSACTION FOLDER
+    // INSRT repay installments into TRANSACTION FOLDER
           
         if (isset($_POST['installments'])) {
 
