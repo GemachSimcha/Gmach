@@ -23,6 +23,10 @@ defined('DB_NAME') ? null :define("DB_NAME", "gmach");
 
    
 $mysqli = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+$balance_query = "SELECT SUM(Amount) as balance FROM transactions";
+$balance = $mysqli->query($balance_query);
+$balanc = mysqli_fetch_assoc($balance);
+$balance->close();
 $mysqli->set_charset("utf8");
 
 foreach ($_POST as $key => $value) {
@@ -32,6 +36,7 @@ if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
         
 
     // INSERT PERSON FOLDER
+        $TotalLoan = -$TotalLoan;
         $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
 
         $person_stmt = $mysqli->prepare($person_insert);
@@ -40,12 +45,15 @@ if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
         $person_stmt->execute();    // can use: if (!$person_stmt->execute()) with error msg
         
     // INSERT INTO LOAN  FOLDER 
+
+        $TotalLoan = -$TotalLoan;
         $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments/*, FutureInstallments, DoneTransactions*/) VALUE (?,?,?,?,?,?,?,?,?/*,?,?*/)";
         $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
         $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $TotalLoan, $Currency, $Method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
         $loan_folder_stmt->execute();
         
     // INSRT loan transaction into TRANSACTION FOLDER
+        $TotalLoan = -$TotalLoan;
         $loan_transaction_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'Loan')";
         $loan_transaction_stmt = $mysqli->prepare($loan_transaction_insert);
         $loan_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfLoan, $Currency, $Method, $TotalLoan);

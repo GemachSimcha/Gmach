@@ -26,7 +26,7 @@ include_once("includes/inserts.php");
 
      <div class="jumbotron text-center">
      	<h1>גמ"ח חסדי השם</h1>
-     	<h3>יתרתך להיום הוא:<span id="balance"></span></h3>
+     	<h3>יתרתך להיום הוא: <?php if ($balanc['balance']) { echo $balanc['balance'];} else { echo "0";}  ?> ש"ח</h3>
      </div>
 
 
