@@ -32,122 +32,105 @@ $mysqli->set_charset("utf8");
     $balance->close();
 
 // variables for insert statements
-foreach ($_POST as $key => $value) {
-    $$key = $value;
-}     
+    foreach ($_POST as $key => $value) {
+        $$key = $value;
+    }     
 
 if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
         
+// INSERT into 'PERSON' FOLDER
+    $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
+    $person_stmt = $mysqli->prepare($person_insert);
+    $person_stmt->bind_param("sssssss",$firstname, $lastname, $idnumber, $cellphone, $telephone, $address, $TotalLoan);
+    $person_stmt->execute();    // can use: if (!$person_stmt->execute()) with error msg
+    
+// INSERT INTO 'LOAN'  FOLDER 
+    $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments) VALUE (?,?,?,?,?,?,?,?,?)";
+    $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
+    $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $TotalLoan, $Currency, $Method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
+    $loan_folder_stmt->execute();
+    
+// INSERT loan transaction into 'TRANSACTION' FOLDER
+    $TotalLoan = -$TotalLoan;
+    $loan_transaction_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'Loan')";
+    $loan_transaction_stmt = $mysqli->prepare($loan_transaction_insert);
+    $loan_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfLoan, $Currency, $Method, $TotalLoan);
+    $loan_transaction_stmt->execute();
 
-    // INSERT PERSON FOLDER
-        $TotalLoan = -$TotalLoan;
-        $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
-
-        $person_stmt = $mysqli->prepare($person_insert);
-        $person_stmt->bind_param("sssssss",$firstname, $lastname, $idnumber, $cellphone, $telephone, $address, $TotalLoan);
-        //execute query
-        $person_stmt->execute();    // can use: if (!$person_stmt->execute()) with error msg
-        
-    // INSERT INTO LOAN  FOLDER 
-
-        $TotalLoan = -$TotalLoan;
-        $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments/*, FutureInstallments, DoneTransactions*/) VALUE (?,?,?,?,?,?,?,?,?/*,?,?*/)";
-        $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
-        $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $TotalLoan, $Currency, $Method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
-        $loan_folder_stmt->execute();
-        
-    // INSRT loan transaction into TRANSACTION FOLDER
-        $TotalLoan = -$TotalLoan;
-        $loan_transaction_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'Loan')";
-        $loan_transaction_stmt = $mysqli->prepare($loan_transaction_insert);
-        $loan_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfLoan, $Currency, $Method, $TotalLoan);
-        $loan_transaction_stmt->execute();
-
-            //CLOSE EXECUTE
-            $person_stmt->close();
-            $loan_folder_stmt->close();
-            $loan_transaction_stmt->close();
+//CLOSE EXECUTE
+    $person_stmt->close();
+    $loan_folder_stmt->close();
+    $loan_transaction_stmt->close();
 
 
-    // INSRT repay installments into TRANSACTION FOLDER
-          
-        if (isset($_POST['installments'])) {
+// INSERT repayments into TRANSACTION FOLDER
+      
+    if (!isset($_POST['installments'])) {
+// INSERT repayment transaction into 'TRANSACTION' FOLDER
+     $TotalLoan = -$TotalLoan;
+     $repayment_transaction_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
+     $repayment_transaction_stmt = $mysqli->prepare($repayment_transaction_insert);
+     $repayment_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfFinalPayment, $Currency, $Method, $TotalLoan);
+     $repayment_transaction_stmt->execute();   
+     $repayment_transaction_stmt->close();   
 
-            // if selected radio = monthly
-            /*code for monthly installments*/
-            if ($_POST['options'] === "monthly") {            
+    } else {     // if repaying in installments
+        // if selected radio = monthly
+        /*code for monthly installments*/
+        if ($_POST['options'] === "monthly") {            
 
-                // to convert selected day in the month to correct mysql date format            
+            // to convert selected day in the month to correct mysql date format            
                 $nowDate = new DateTime();
                 $d = $nowDate->format('d');
                 $m = $nowDate->format('m');
                 $Y = $nowDate->format('Y');
-
-                $X = $_POST['DayInMonth'];            
-
-                $nowDate->setDate($Y , $m , $X);
-
-                if ($d>$X) {
+                $nowDate->setDate($Y , $m , $DayInMonth);
+                if ($d>$DayInMonth) {
                     $nowDate->modify( '+1 month');
                 } // end of date conversion
+            $installment_date = $nowDate->format('Y-m-d');
+           
+            $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
+            $installment_stmt = $mysqli->prepare($installment_insert);
+            $installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $monthly_Currency, $monthly_Method, $monthly_Amount);
+            $installment_stmt->execute();
+            $installment_stmt->close();
 
-                $installment_date = $nowDate->format('Y-m-d');
-               
+                /*  foreach NumbeOfPayments    */
+            $i = 1;
+            while ($i <= $NumberOfPayments) {
+                $nowDate->modify( '+1 month');
+                $next_installment_date = $nowDate->format('Y-m-d');
+
+                $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
+                $installment_stmt = $mysqli->prepare($installment_insert);
+                $installment_stmt->bind_param("ssssss",$firstname, $cellphone, $next_installment_date, $installment_Currency, $installment_Method, $installment_amount);
+                $installment_stmt->execute();
+                $installment_stmt->close();
+                $i++;  
+            } 
+        }  // end monthly installments
+
+        /*code for specified installments*/
+        elseif ($_POST['options'] === "specified") {
+            
+            //  foreach transaction
+            $installments = 1;
+            while ($installments <= $_POST['NumberOfPayments']) {
+
                 $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
 
                 $installment_stmt = $mysqli->prepare($installment_insert);
                     
-                if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $monthly_Currency, $monthly_Method, $monthly_Amount)) {
-                    echo "binding did not work</br>";
-                }
+                if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_Currency, $installment_Method, $installment_amount)) {
+                    echo "binding did not work</br>";}
 
                 $installment_stmt->execute();
 
-                /*  foreach NumbeOfPayments    */
-
-                $i = 1;
-                while ($i <= $NumberOfPayments) {
-                    $nowDate->modify( '+1 month');
-                    $next_installment_date = $nowDate->format('Y-m-d');
-
-                    $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
-
-                    $installment_stmt = $mysqli->prepare($installment_insert);
-
-                    if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $next_installment_date, $installment_Currency, $installment_Method, $installment_amount)) {
-                        echo "binding did not work</br>";}
-
-                    $installment_stmt->execute();
-                    $i++;  
-                } 
-
-                $installment_stmt->close();
-
-            }  // end monthly installments
-
-            /*code for specified installments*/
-            elseif ($_POST['options'] === "specified") {
-                
-                //  foreach transaction
-                $installments = 1;
-                while ($installments <= $_POST['NumberOfPayments']) {
-
-                    $installment_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'RepayLoan')";
-
-                    $installment_stmt = $mysqli->prepare($installment_insert);
-                        
-                    if(!$installment_stmt->bind_param("ssssss",$firstname, $cellphone, $installment_date, $installment_Currency, $installment_Method, $installment_amount)) {
-                        echo "binding did not work</br>";}
-
-                    $installment_stmt->execute();
-
-                    $installments++;
-                }   // end foreach transaction
-            }   // end code for specified transactions
-        }  // end of all installments
-         else {
-            echo "<div></div>";   // can edit this message 
-        }
+                $installments++;
+            }   // end foreach transaction
+        }   // end code for specified transactions
+    }  // end of all installments     
 } // end of ($_POST['newloaner_submit'])
 
 
