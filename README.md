@@ -16,4 +16,5 @@ TO VIEW APP  -
 
 
 
-Please note: This site is still under testing and construction!
+Please note: This site is under constant construction!
+Understandably, not all functions are fully operational, yet.
