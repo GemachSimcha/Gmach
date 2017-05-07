@@ -97,7 +97,7 @@ if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
             $installment_stmt->close();
 
                 /*  foreach NumbeOfPayments    */
-            $i = 1;
+            $i = 2;
             while ($i <= $NumberOfPayments) {
                 $nowDate->modify( '+1 month');
                 $next_installment_date = $nowDate->format('Y-m-d');

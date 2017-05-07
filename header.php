@@ -23,7 +23,7 @@ include_once("includes/inserts.php");
      </div>
 
      <div class="col-xs-2">
-        <button class="btn-md" id="show-currency-form">חישוב מט"ח</button>
+        <button class="btn-lg" id="show-currency-form">חישוב מט"ח</button>
          <form method="post" id="currency-form" >     
           <div class="form-group">
            <h5>חישוב מט"ח</h5>
