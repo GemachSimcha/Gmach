@@ -83,14 +83,14 @@ function submitForm() {
       if(response.error == 1){  
         $("#converted_rate").html('<span class="form-group has-error">Error: Please select different currency</span>'); 
         $("#converted_amount").html("");
-        $("#convert").html('Convert');
+        $("#convert").html('בוצע');
         $("#converted_rate").show();   
       } else if(response.rate){                 
         $("#converted_rate").html("<strong>Exchange Rate ("+response.to_Currency+"</strong>) : "+response.rate);
         $("#converted_rate").show();
         $("#converted_amount").html("<strong>הסכום ב"+response.to_Currency+" שווה</strong>  : "+response.converted_amount);
         $("#converted_amount").show();
-        $("#convert").html('Convert');
+        $("#convert").html('בוצע');
       } else {  
         $("#converted_rate").html("No Result"); 
         $("#converted_rate").show();  

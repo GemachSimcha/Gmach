@@ -26,7 +26,8 @@ include_once("includes/inserts.php");
      	<button class="btn btn-success btn-lg" id="show-currency-form">חישוב מט"ח</button>
         <form method="post" id="currency-form" >     
           <div class="form-group">
-            <input type="text" placeholder="Currency" name="amount" id="amount" value="סכום" />
+          	</br></br>
+            <input type="text" placeholder="Currency" name="amount" id="amount" placeholder="סכום" />
              </br>
               <label>מ</label>
               <select name="from_currency">
