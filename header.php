@@ -23,20 +23,20 @@ include_once("includes/inserts.php");
      </div>
 
      <div class="col-xs-2">
-     	<form><button class="btn btn-success btn-lg" id="show-currency-form">חישוב מט"ח</button></form>
+     	<button class="btn btn-success btn-lg" id="show-currency-form">חישוב מט"ח</button>
         <form method="post" id="currency-form" >     
           <div class="form-group">
-           <h5>חישוב מט"ח</h5>
-             &nbsp;<label>סכום</label> 
-             <input type="text" placeholder="Currency" name="amount" id="amount" />
+            <input type="text" placeholder="Currency" name="amount" id="amount" value="סכום" />
+             </br>
+              <label>מ</label>
               <select name="from_currency">
                 <option value="USD" selected="1">דולר ארה"ב ($)</option>
                 <option value="ILS">שקל (₪)</option>
                 <option value="EUR">אירו (€)</option>
                 <option value="GBP">שטרלינג אנגלי (£)</option>
               </select> 
-                   
-              &nbsp;<label>To</label>
+              </br>     
+              &nbsp;<label>ל</label>
               <select name="to_currency">
                 <option value="ILS" selected="1">שקל (₪)</option>
                 <option value="USD">דולר ארה"ב ($)</option>
@@ -44,7 +44,8 @@ include_once("includes/inserts.php");
                 <option value="GBP">שטרלינג אנגלי (£)</option>
               </select>     
               &nbsp;&nbsp;<button type="submit" value="1" name="convert" id="convert" class="btn btn-default btn-sml">חשב</button> 
-         </form>       
+         </form>
+         </div>       
          <h5 id="converted_amount"></h5>        
      </div>
     </div>
