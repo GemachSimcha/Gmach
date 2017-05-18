@@ -28,7 +28,7 @@ $mysqli->set_charset("utf8");
 // balance of all loans, deposits, repayments, withdrawals and donations (for jumbotron)
     $balance_query = "SELECT SUM(Amount) as balance FROM transactions";
     $balance = $mysqli->query($balance_query);
-    $balanc = mysqli_fetch_assoc($balance);
+    $balance = mysqli_fetch_assoc($balance);
     $balance->close();
 
 // variables for insert statements
