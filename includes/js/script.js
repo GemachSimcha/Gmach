@@ -20,7 +20,7 @@ $( "#dialog-link, #icons li" ).hover(
 
 
 // toggle monthly or specific installments
-$( "#NumberOfPayments,#selectedMethod,#monthlyDetails1,#monthlyDetails2,#specificiedInstallment1,#specificiedDetails" ).hide();
+$( "#NumberOfPayments,#selectedMethod,#monthlyDetails1,#monthlyDetails2,#repay1,#specificiedDetails" ).hide();
 $( "#installments" ).change(function() {
   $( "#NumberOfPayments,#selectedMethod" ).show();
   $('input[type="radio"]').click(function() {
@@ -28,18 +28,16 @@ $( "#installments" ).change(function() {
       $( "#monthlyDetails1,#monthlyDetails2" ).show();
     }
     if ($(this).val() == 'specificied') {
-      $("#specificiedInstallment1,#specificiedDetails").show();
+      $("#repay1,#specificiedDetails").show();
 
 
 /*        NEED TO CLONE #specificiedDetails2
 */       
-      var i;
       var NumberOFPayments = $("#NumberOfPayments").val();
-      for (i = 1; i < NumberOFPayments; i++) {
-        var $sd = $( 'tr[id^="specificiedInstallment"]:last' );
+      for (var i = 1; i < NumberOFPayments; i++) {
+        var $sd = $( 'tr[id^="repay"]:last' );
         var num = parseInt( $sd.prop("id").match(/\d+/g), 10 ) +1;
-        var $clone = $sd.clone().prop('id', 'specificiedInstallment'+num );
-        $sd.after( $clone.text('specificiedInstallment'+num) );
+        $sd.after( $sd.clone().prop('id', 'repay'+num ).find('input[name="installment_date"]').prop('id', 'datepic'+num));
       }
     }
   });
