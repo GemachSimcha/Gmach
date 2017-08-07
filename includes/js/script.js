@@ -29,27 +29,23 @@ $( function() {
       }
       if ($(this).val() == 'specificied') {
         $("#repay1,#specificiedDetails").show();
-
-
-  /*        NEED TO CLONE #specificiedDetails2
-  */       
+        // clone repayment fields, including datepicker
         var NumberOFPayments = $("#NumberOfPayments").val();
         for (var i = 1; i < NumberOFPayments; i++) {
           var $sd = $( 'tr[id^="repay"]:last' );
           var num = parseInt( $sd.prop("id").match(/\d+/g), 10 ) +1;
           var clone = $sd.clone();
           clone.attr('id', 'repay'+num );
-          clone.find('input[name="installment_date"]').attr('id', 'datepickers'+num);
+          clone.find('input[name="installment_date"]').attr('id', 'datepickers'+num).removeClass('hasDatepicker');
           $sd.after(clone);
           $('input[id^="datepickers"]').each(function(){
-            $(this).removeClass('hasDatepicker');
             $(this).datepicker({ dateFormat: 'yy-mm-dd' });
           });
         }
       }
     });
   });
-  
+    
 
         /*   currency exchange   */
   // hide and show
