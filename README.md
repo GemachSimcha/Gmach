@@ -19,4 +19,4 @@ TO VIEW APP  -
 Please note: This site is under constant construction!
 Understandably, not all functions are fully operational, yet.
 
-5/9 There will probably not be any major updates this week as I am learning OOP skills and testing out on my Gemach test site before inmplementation
+I am back with more updates!
