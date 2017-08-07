@@ -4,12 +4,12 @@ echo '<p>בס"ד</p>';
 
 // file definitions
     defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
-    defined('SITE_ROOT') ? null : define('SITE_ROOT', DS.'wamp'.DS.'www'.DS.'gmach');
+    defined('SITE_ROOT') ? null : define('SITE_ROOT', DS.'wamp64-b'.DS.'Gmach-www'.DS.'gmach');
     defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT.DS.'includes');
 // Database Constants
     defined('DB_SERVER') ? null : define("DB_SERVER", "localhost");
     defined('DB_USER') ? null :define("DB_USER", "root");
-    defined('DB_PASS') ? null :define("DB_PASS", "GemachSimcha");
+    defined('DB_PASS') ? null :define("DB_PASS", "root");
     defined('DB_NAME') ? null :define("DB_NAME", "gmach");
     
 // CREATE DB if does not exist

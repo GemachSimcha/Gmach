@@ -98,7 +98,7 @@
                   </td>
                 </tr>                         
                 
-                <tr id="specificiedDetails">
+                <tr id="specificiedDetails1">
                 <td></td>
                 <td class="form-inline">
                   
@@ -118,7 +118,7 @@
                 </td>
 
                 </tr>
-                <tr class="installments form-inline" id="specificiedInstallment" >
+                <tr class="installments form-inline" id="specificiedInstallment1" >
                   <td></td>
                   <td><input class="form-control" style="width:25%" type="number" name="installment_amount" id="installment_amount" placeholder="סכום"><input type="text" style="width:25%" name="installment_date" id="datepick3" placeholder="תאריך" class="form-control datepicker"></td>
                 </tr>
