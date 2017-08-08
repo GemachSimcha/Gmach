@@ -1,8 +1,8 @@
 <?php
-// $mysqli
+$connect = mysqli_connect("localhost", "root", "root", "gmach");
 $output = '';
-$sql = "SELECT * FROM person WHERE FirstName LIKE '%".$_POST["search"]."%'";
-$result = mysqli_query($mysqli, $sql);
+$sql = "SELECT * FROM person WHERE FirstName LIKE '%".$_POST["search_text"]."%'";
+$result = mysqli_query($connect, $sql);
 if (mysqli_num_rows($result) > 0) {
 	$output .='<h4 align="center">Search Result</h4>
 ';

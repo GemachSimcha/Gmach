@@ -26,21 +26,32 @@ include('footer.php');
   $( function() {
     $('#search_text').keyup(function() {
       var txt = $(this).val();
-      if(txt != '') {  }
-      else {
-        $('#result').html('');
+      if(txt != '') { 
         $.ajax({
-          url: ajax_fetch.php,
-          method: "post",
+          url:"/ajax_fetch.php",
+          method:"post",
           data:{search:txt},
-          dataType: "text",
+          dataType:"text",
           success:function(data)
           {
             $('#result').html(data);
           }
         });
+      }       
+      else {
+        $('#result').html('');
+          $.ajax({
+            url:"/ajax_fetch.php",
+            method:"post",
+            data:{search:txt},
+            dataType:"text",
+            success:function(data)
+            {
+              $('#result').html(data);
+            }
+          });
       }
     });
-});
+  });
 </script>
 
