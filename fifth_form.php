@@ -1,26 +1,18 @@
-  <div role="tabpanel" class="tab-pane" id="donation">
+  <div role="tabpanel" class="tab-pane" id="withdraw">
 
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="navbar-form">
           <table class="form_group">
-            <tr >
+            <tr  class="has-warning">
                 <td><label for="firstname">שם פרטי</label></td>
-                <td><input type="text" class="form-control" name="firstname" id="firstname" placeholder="שם פרטי"></td>
-            </tr>
-            <tr>
-                <td><label for="lastname">שם משפחה</label></td>
-                <td><input type="text" name="lastname" id="lastname" class="form-control" placeholder="שם משפחה"></td>
-            </tr>
-            <tr class="no_spin">
-                <td><label for="cellphone">פלאפון</label></td>
-                <td><input type="number" name="cellphone" id="cellphone" class="form-control" placeholder="פלאפון"></td>
-            </tr>
-            <tr class="no_spin">
-                <td><label for="telephone">טלפון</label></td>
-                <td><input type="number" name="telephone" id="telephone" class="form-control" placeholder="טלפון"></td>
+                <td><input type="text" class="form-control" name="firstname" id="firstname" placeholder="שם פרטי - שדה חובה!"></td>
             </tr>
             <tr class="no_spin has-warning">
-                <td><label for="TotalDeposit">סכום תרומה</label></td>
-                <td><input type="number" name="TotalDeposit" id="TotalDeposit" class="form-control" placeholder="סכום תרומה   - שדה חובה!" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
+                <td><label for="cellphone">פלאפון</label></td>
+                <td><input type="number" name="cellphone" id="cellphone" class="form-control" placeholder="פלאפון  - שדה חובה!" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
+            </tr>
+            <tr class="no_spin has-warning">
+                <td><label for="withdrawalAmount">סכום משיכה</label></td>
+                <td><input type="number" name="withdrawalAmount" id="withdrawalAmount" class="form-control" placeholder="סכום משיכה - שדה חובה!" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
             </tr>
             <tr class="form-inline">
                 <td><label for="Currency Method">מטבע וצורה</label></td>
@@ -41,11 +33,15 @@
                 </td>
             </tr>            
             <tr>
+                <td><label for="DateOfWithdrawal">תאריך משיכה</label></td>
+                <td><input type="text" name="DateOfWithdrawal" id="withdrawal_datepicker" class="form-control datepicker" placeholder="תאריך משיכה"></td>
+            </tr>
+            <tr>
             <td></td>
               <td>
-                    <input type="submit" name="donation_submit" class="btn btn-block" value="הוסף" style="width: 50%">
+                    <input type="submit" name="withdrawal_submit" class="btn btn-block" value="הוסף" style="width: 50%">
               </td>
-            </tr> 
+            </tr>             
           </table>
         </form>
-        </div> <!-- donation tab -->
+        </div> <!-- withdraw tab -->

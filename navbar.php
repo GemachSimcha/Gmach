@@ -6,19 +6,23 @@
       <ul class="nav nav-tabs navbar navbar-right" role="tablist">
         <li role="presentation" class="active pull-right">
           <a role="tab" data-toggle="tab"
-           href="#newloaner">הוסף לוה חדש</a>
+           href="#newPeople">הוסף אנשים</a>
         </li>
         <li role="presentation" class="pull-right">
           <a role="tab" data-toggle="tab"
-           href="#oldLoaner">הלואה לרשום</a>
+           href="#loan">הלואה חדשה</a>
         </li>
         <li role="presentation" class="pull-right">
           <a role="tab" data-toggle="tab"
-           href="#newDepositor">הוסף מפקיד חדש</a>
+           href="#repay">החזר הלואה</a>
         </li>
         <li role="presentation" class="pull-right">
           <a role="tab" data-toggle="tab"
-           href="#oldDepositor">פקדון לרשום</a>
+           href="#deposit">פקדון חדש</a>
+        </li>
+        <li role="presentation" class="pull-right">
+          <a role="tab" data-toggle="tab"
+           href="#withdraw">משיכת פקדון</a>
         </li>
         <li role="presentation" class="pull-right">
           <a role="tab" data-toggle="tab"

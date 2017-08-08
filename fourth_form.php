@@ -1,4 +1,4 @@
-  <div role="tabpanel" class="tab-pane" id="oldDepositor">
+  <div role="tabpanel" class="tab-pane" id="deposit">
 
         <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="navbar-form">
           <table class="form_group">
@@ -33,21 +33,19 @@
                 </td>
             </tr>            
             <tr>
-
                 <td><label for="DateOfDeposit">תאריך הפקדה</label></td>
-                <td><input type="text" name="DateOfDeposit" id="datepick1" class="form-control datepicker"></td>
+                <td><input type="text" name="DateOfDeposit" id="deposit_datepicker" class="form-control datepicker"></td>
             </tr>
             <tr>
                 <td><label for="DateOfWithdrawal">תאריך משיכה</label></td>
-                <td><input type="text" name="DateOfWithdrawal" id="datepick2" class="form-control datepicker" placeholder="תאריך משיכה"></td>
+                <td><input type="text" name="DateOfWithdrawal" id="future_withdrawal_datepicker" class="form-control datepicker" placeholder="תאריך משיכה"></td>
             </tr>
             <tr>
             <td></td>
               <td>
-                    <input type="submit" name="oldDepositer_submit" class="btn btn-block" value="הוסף" style="width: 50%">
+                    <input type="submit" name="deposit_submit" class="btn btn-block" value="הוסף" style="width: 50%">
               </td>
-            </tr> 
-            
+            </tr>             
           </table>
         </form>
-        </div> <!-- oldDepositor tab -->
+        </div> <!-- deposit tab -->
