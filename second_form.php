@@ -1,4 +1,4 @@
-  <div role="tabpanel" class="tab-pane" id="loan">
+<div role="tabpanel" class="tab-pane" id="loan">
 
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="navbar-form">
     <table class="form_group">
