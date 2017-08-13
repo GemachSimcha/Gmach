@@ -3,8 +3,8 @@
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="navbar-form">
     <table class="form_group">
       <tr  class="has-warning">
-          <td><label for="firstname">שם פרטי</label></td>
-          <td><input type="text" class="form-control" name="firstname" id="firstname" placeholder="שם פרטי - שדה חובה!"></td>
+          <td><label for="firstname">שם פרטי ומשפחה</label></td>
+          <td><input type="text" class="form-control" name="firstname" id="firstname" placeholder="שם פרטי ומשפחה - שדה חובה!"></td>
       </tr>
       <tr class="no_spin has-warning">
           <td><label for="cellphone">פלאפון</label></td>

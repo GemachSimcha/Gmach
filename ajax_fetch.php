@@ -1,32 +1,18 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "root", "gmach");
-$output = '';
-$sql = "SELECT * FROM person WHERE FirstName LIKE '%".$_POST["search_text"]."%'";
-$result = mysqli_query($connect, $sql);
-if (mysqli_num_rows($result) > 0) {
-	$output .='<h4 align="center">Search Result</h4>
-';
-	$output .='<div class="table-responsive">
-	<table class="table table-bordered">
-		<tr>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Teudat Zehut</th>
-		</tr>';
-	while ($row = mysqli_fetch_array(result)) {
-		$output .= '
-		<tr>
-			<td>'.$row["FirstName"].'</td>
-			<td>'.$row["LastName"].'</td>
-			<td>'.$row["TeudatZehut"].'</td>
-		</tr>
-		';
+$request = mysqli_real_escape_string($connect, $_POST["query"]);
+$query = "SELECT * FROM person WHERE FirstName LIKE '%{$request}%'";
+$result = mysqli_query($connect, $query);
+
+$data = array();
+
+if(mysqli_num_rows($result) > 0) {
+	while ($row = mysqli_fetch_assoc($result)) {
+		$data[] = $row["name"];
 	}
-	echo $output;
- }
- else {
- 	echo "לא נמצא במערכת, הוסף אנשים חדשים";
- }
+	echo json_encode($data);
+}
+
 ?>
 
 
