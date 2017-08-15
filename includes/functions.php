@@ -14,10 +14,13 @@ function currencyConverter($from_Currency,$to_Currency,$amount) {
 	echo json_encode( $data );	
 }
 
-function stripLastname($firstname) {
-	$firstname = explode( " ", $firstname );
-	$firstname = array_splice( $firstname, -1 );
+function stripLastname($fullname) {
+	$parts = explode( " ", $fullname );
+	$lastname = array_pop($parts);
 	$firstname = implode( " ", $firstname );
+	// $parts = explode(" ", $name);
+	// $firstname = implode(" ", $parts);
+	// return $firstname;
 }
 
 ?> 
