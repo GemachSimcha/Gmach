@@ -88,6 +88,7 @@ CREATE TABLE IF NOT EXISTS `gmach`.`transactions` (
   `Method` ENUM('Cash', 'Check', 'Transfer', 'CreditCard', 'HoraatKeva') NULL DEFAULT 'Cash',
   `Amount` VARCHAR(10) NULL DEFAULT NULL,
   `Explaination` ENUM('Loan', 'RepayLoan', 'Deposit', 'WithdrawDeposit', 'Donation') NULL DEFAULT NULL,
+  `confirmed` ENUM('yes','no') NOT NULL,
   PRIMARY KEY (`idTransactions`),
   INDEX `fk_transactions_deposit1_idx` (`deposit_person_FirstName` ASC, `deposit_person_Cellular` ASC),
   INDEX `fk_transactions_loan1_idx` (`loan_person_FirstName` ASC, `loan_person_Cellular` ASC),

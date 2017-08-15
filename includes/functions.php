@@ -12,15 +12,12 @@ function currencyConverter($from_Currency,$to_Currency,$amount) {
 	$converted_amount = $amount*$rate;
 	$data = array( 'rate' => $rate, 'converted_amount' =>$converted_amount, 'from_Currency' => strtoupper($from_Currency), 'to_Currency' => strtoupper($to_Currency));
 	echo json_encode( $data );	
-}
+	}
 
 function stripLastname($fullname) {
 	$parts = explode( " ", $fullname );
 	$lastname = array_pop($parts);
-	$firstname = implode( " ", $firstname );
-	// $parts = explode(" ", $name);
-	// $firstname = implode(" ", $parts);
-	// return $firstname;
-}
+	$firstname = implode( " ", $parts );
+	}
 
 ?> 

@@ -10,17 +10,22 @@ if (isset($_POST['newPerson_submit'])) {
 
 if (isset($_POST['loan_submit'])) {
     // INSERT INTO 'LOAN'  FOLDER 
-    $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments) VALUE (?,?,?,?,?,?,?,?,?)";
+    $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments) VALUES (?,?,?,?,?,?,?,?,?)";
     $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
-    $firstname = stripLastname($fullname);
+    $parts = explode( " ", $fullname );
+    $lastname = array_pop($parts);
+    $firstname = implode( " ", $parts );
     $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $TotalLoan, $Currency, $Method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
     $loan_folder_stmt->execute();
     // INSERT loan transaction into 'TRANSACTION' FOLDER
     $TotalLoan = -$TotalLoan;
-    $loan_transaction_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'Loan')";
+    $loan_transaction_insert = "INSERT INTO transactions (loan_person_FirstName, loan_person_Cellular, Date, Currency, Method, Amount, Explaination, confirmed) VALUES (?, ?, ?, ?, ?, ?, 'Loan', 'yes')";
     $loan_transaction_stmt = $mysqli->prepare($loan_transaction_insert);
     $loan_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfLoan, $Currency, $Method, $TotalLoan);
-    $loan_transaction_stmt->execute();
+    if(       $loan_transaction_stmt->execute()) {    } else {
+        $error = $mysqli->errno . ' ' . $mysqli->error;
+        echo $error; // 1054 Unknown column 'foo' in 'field list'
+    }
     //CLOSE EXECUTE
     $loan_folder_stmt->close();
     $loan_transaction_stmt->close();
