@@ -2,9 +2,8 @@
 
 
 $( function() {
-   // $( ".datepicker" ).datepicker($.datepicker.regional["he"]);
    $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
-   $( "#datepick1" ).datepicker("setDate", new Date());
+   $( "#datepick1, #repay_datepicker, #deposit_datepicker, #withdrawal_datepicker, #donation_datepicker" ).datepicker("setDate", new Date());
 
    //hide spinner
    $( "#spin" ).hide();
