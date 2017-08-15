@@ -13,4 +13,11 @@ function currencyConverter($from_Currency,$to_Currency,$amount) {
 	$data = array( 'rate' => $rate, 'converted_amount' =>$converted_amount, 'from_Currency' => strtoupper($from_Currency), 'to_Currency' => strtoupper($to_Currency));
 	echo json_encode( $data );	
 }
+
+function stripLastname($firstname) {
+	$firstname = explode( " ", $firstname );
+	$firstname = array_splice( $firstname, -1 );
+	$firstname = implode( " ", $firstname );
+}
+
 ?> 

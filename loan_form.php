@@ -4,7 +4,7 @@
     <table class="form_group">
         <tr  class="has-warning">
            <td><label for="firstname">שם פרטי ומשפחה</label></td>
-            <td><input type="text" class="form-control" name="firstname" id="firstname" placeholder="שם פרטי ומשפחה - שדה חובה!"></td>
+            <td><input type="text" class="form-control" name="firstname" id="firstname" placeholder="שם פרטי ומשפחה - חובה!"></td>
         </tr>
         <tr class="no_spin has-warning">
             <td><label for="cellphone">פלאפון</label></td>

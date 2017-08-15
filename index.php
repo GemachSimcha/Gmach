@@ -1,6 +1,6 @@
 <?php
-include('header.php');
-include('navbar.php');
+include('/header.php');
+include('/navbar.php');
 ?>
 <div class="tab-content">
   <div role="tabpanel" class="tab-pane active" id="newPeople">
@@ -42,11 +42,11 @@ include('navbar.php');
   </form>
   </div> <!-- newloaner tab -->
 <?php
-include('second_form.php');
-include('third_form.php');
-include('fourth_form.php');
-include('fifth_form.php');
-include('sixth_form.php');
+include('/loan_form.php');
+include('/repay_form.php');
+include('/deposit_form.php');
+include('/withdrawal_form.php');
+include('/donation_form.php');
 
 ?>
 </div>  <!-- tab-content -->
@@ -57,8 +57,8 @@ include('sixth_form.php');
 </div>
 			
 <?php
-include('navbar2.php');
-include('footer.php');
+include('/navbar2.php');
+include('/footer.php');
  ?>
 
 

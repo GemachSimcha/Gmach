@@ -1,49 +1,39 @@
 <?php
 
-echo '<p>בס"ד</p>';
-
-// file definitions
-    defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
-    defined('SITE_ROOT') ? null : define('SITE_ROOT', DS.'wamp64-b'.DS.'Gmach-www'.DS.'gmach');
-    defined('LIB_PATH') ? null : define('LIB_PATH', SITE_ROOT.DS.'includes');
-// Database Constants
-    defined('DB_SERVER') ? null : define("DB_SERVER", "localhost");
-    defined('DB_USER') ? null :define("DB_USER", "root");
-    defined('DB_PASS') ? null :define("DB_PASS", "root");
-    defined('DB_NAME') ? null :define("DB_NAME", "gmach");
-    
-// CREATE DB if does not exist
-    $new_database = new mysqli(DB_SERVER, DB_USER, DB_PASS);
-    $query_file = LIB_PATH.DS.'sql_file.txt';
-    $query_file_open = fopen($query_file, 'r');
-    $sql = fread($query_file_open, filesize($query_file));
-    fclose($query_file_open);
-    $new_database->multi_query($sql);
-    mysqli_close($new_database);
-
-/*      Database connection         */
-$mysqli = new mysqli(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
-$mysqli->set_charset("utf8");
-
-// balance of all loans, deposits, repayments, withdrawals and donations (for jumbotron)
-    $balance_query = "SELECT SUM(Amount) as balance FROM transactions";
-    $balance = $mysqli->query($balance_query);
-    $balanc = mysqli_fetch_assoc($balance);
-    $balance->close();
-
-// variables for insert statements
-    foreach ($_POST as $key => $value) {
-        $$key = $value;
-    }     
-
-if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
-        
-// INSERT into 'PERSON' FOLDER
+if (isset($_POST['newPerson_submit'])) {
     $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
     $person_stmt = $mysqli->prepare($person_insert);
     $person_stmt->bind_param("sssssss",$firstname, $lastname, $idnumber, $cellphone, $telephone, $address, $TotalLoan);
-    $person_stmt->execute();    // can use: if (!$person_stmt->execute()) with error msg
-    
+    $person_stmt->execute();   
+    $person_stmt->close();
+}
+
+if (isset($_POST['loan_submit'])) {
+    // INSERT INTO 'LOAN'  FOLDER 
+    $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments) VALUE (?,?,?,?,?,?,?,?,?)";
+    $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
+    $firstname = stripLastname($firstname);
+    $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $TotalLoan, $Currency, $Method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
+    $loan_folder_stmt->execute();
+    // INSERT loan transaction into 'TRANSACTION' FOLDER
+        $TotalLoan = -$TotalLoan;
+        $loan_transaction_insert = "INSERT INTO `transactions` (`loan_person_FirstName`, `loan_person_Cellular`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`) VALUES (?, ?, ?, ?, ?, ?, 'Loan')";
+        $loan_transaction_stmt = $mysqli->prepare($loan_transaction_insert);
+        $loan_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfLoan, $Currency, $Method, $TotalLoan);
+        $loan_transaction_stmt->execute();
+    //CLOSE EXECUTE
+        $loan_folder_stmt->close();
+        $loan_transaction_stmt->close();
+}
+
+if (isset($_POST['repay_submit'])) {}
+if (isset($_POST['deposit_submit'])) {}
+if (isset($_POST['withdrawal_submit'])) {}
+if (isset($_POST['donation_submit'])) {}
+
+if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
+        
+
 // INSERT INTO 'LOAN'  FOLDER 
     $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments) VALUE (?,?,?,?,?,?,?,?,?)";
     $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);

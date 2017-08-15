@@ -1,5 +1,5 @@
 <?php
-include_once("functions.php");
+include_once("/functions.php");
 if(isset($_POST['convert'])) {
 	$from_currency = trim($_POST['from_currency']);
 	$to_currency = trim($_POST['to_currency']);

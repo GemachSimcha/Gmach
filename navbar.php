@@ -22,7 +22,7 @@
         </li>
         <li role="presentation" class="pull-right">
           <a role="tab" data-toggle="tab"
-           href="#withdraw">משיכת פקדון</a>
+           href="#withdrawal">משיכת פקדון</a>
         </li>
         <li role="presentation" class="pull-right">
           <a role="tab" data-toggle="tab"
