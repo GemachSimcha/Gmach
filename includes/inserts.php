@@ -1,20 +1,31 @@
 <?php
 
 if (isset($_POST['newPerson_submit'])) {
-    $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address, SumOfLoans) VALUES (?,?,?,?,?,?,?)";
+    $person_insert = "INSERT INTO Person (FirstName, LastName, TeudatZehut, Cellular, HomePhone, Address) VALUES (?,?,?,?,?,?)";
     $person_stmt = $mysqli->prepare($person_insert);
-    $person_stmt->bind_param("sssssss",$firstname, $lastname, $idnumber, $cellphone, $telephone, $address, $TotalLoan);
+    $person_stmt->bind_param("ssssss",$firstname, $lastname, $idnumber, $cellphone, $telephone, $address);
     $person_stmt->execute();   
     $person_stmt->close();
 }
 
 if (isset($_POST['loan_submit'])) {
-    // INSERT INTO 'LOAN'  FOLDER 
-    $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments) VALUES (?,?,?,?,?,?,?,?,?)";
-    $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
     $parts = explode( " ", $fullname );
     $lastname = array_pop($parts);
     $firstname = implode( " ", $parts );
+    // INSERT INTO 'person' FOLDER
+        // retrieve old SumOfLoans
+    $old_total_select = "SELECT SumOfLoans FROM person WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
+    $old_TotalLoan = $mysqli->query($old_total_select);
+    $total_row = $old_TotalLoan->fetch_array(MYSQLI_NUM);
+    $All_Loans = $total_row[0] + $SumOfLoan;
+    $old_TotalLoan->close();
+        // update 'person' folder
+    $person_folder_insert = "UPDATE person SET SumOfLoans = '".$All_Loans."'  WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
+    $person_folder_query = mysqli_query($mysqli,$person_folder_insert);
+    $person_folder_query->close;
+    // INSERT INTO 'LOAN'  FOLDER 
+    $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments) VALUES (?,?,?,?,?,?,?,?,?)";
+    $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
     $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $TotalLoan, $Currency, $Method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
     $loan_folder_stmt->execute();
     // INSERT loan transaction into 'TRANSACTION' FOLDER

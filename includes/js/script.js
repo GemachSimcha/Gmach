@@ -50,7 +50,7 @@ $( function() {
   // hide and show
   $("#currency-form").hide();
   $("#show-currency-form").click(function(){
-    $("#currency-form").show();
+    $("#currency-form").toggle();
   });
 
   /* handling currency form validation */
