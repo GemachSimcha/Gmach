@@ -12,7 +12,7 @@ if (isset($_POST['loan_submit'])) {
     $parts = explode( " ", $fullname );
     $lastname = array_pop($parts);
     $firstname = implode( " ", $parts );
-    // INSERT INTO 'person' FOLDER
+    // UPDATE 'person' FOLDER
         // retrieve old SumOfLoans
     $old_total_select = "SELECT SumOfLoans FROM person WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
     $old_TotalLoan = $mysqli->query($old_total_select);
@@ -42,10 +42,38 @@ if (isset($_POST['loan_submit'])) {
     $loan_transaction_stmt->close();
 }
 
-if (isset($_POST['repay_submit'])) {}
-if (isset($_POST['deposit_submit'])) {}
-if (isset($_POST['withdrawal_submit'])) {}
-if (isset($_POST['donation_submit'])) {}
+if (isset($_POST['repay_submit'])) {
+    // UPDATE 'person' FOLDER
+        // retrieve old SumOfLoans
+        // update SumOfLoans
+    // UPDATE 'loan' FOLDER
+    // INSERT repay into 'transaction' folder
+}
+
+if (isset($_POST['deposit_submit'])) {
+    // UPDATE 'person' FOLDER
+        // retrieve old SumOfDeposits
+        // update SumOfDeposits
+    // INSERT INTO 'deposit' FOLDER
+    // INSERT deposit into 'transaction' folder
+}
+
+if (isset($_POST['withdrawal_submit'])) {
+    // UPDATE 'person' FOLDER
+        // retrieve old SumOfDeposits
+        // update SumOfDeposits
+    // UPDATE 'deposit' FOLDER
+    // INSERT withdrawal into 'transaction' folder
+}
+if (isset($_POST['donation_submit'])) {
+    // INSERT donation into 'transaction' folder
+    $Donor = $firstname . " " . $lastname . " " . $cellphone . " " . $telephone;
+    $deposit_transaction_insert = "INSERT INTO transactions (Donor_info, Date, Currency, Method, Amount, Explaination, confirmed) VALUES (?, ?, ?, ?, ?, 'Donation', 'yes')";
+    $deposit_transaction_stmt = $mysqli->prepare($deposit_transaction_insert);
+    $deposit_transaction_stmt->bind_param("sssss", $Donor, $DateOfLoan, $Currency, $Method, $TotalDonation);
+    $deposit_transaction_stmt->execute();
+    $deposit_transaction_stmt->close();
+}
 
 if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
         

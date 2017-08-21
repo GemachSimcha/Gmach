@@ -19,8 +19,8 @@
           <td><input type="number" name="telephone" id="telephone" class="form-control" placeholder="טלפון"></td>
       </tr>
       <tr class="no_spin has-warning">
-          <td><label for="TotalDeposit">סכום תרומה</label></td>
-          <td><input type="number" name="TotalDeposit" id="TotalDeposit" class="form-control" placeholder="סכום תרומה   - שדה חובה!" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
+          <td><label for="TotalDonation">סכום תרומה</label></td>
+          <td><input type="number" name="TotalDonation" id="TotalDonation" class="form-control" placeholder="סכום תרומה   - שדה חובה!" required oninvalid="this.setCustomValidity('שדה חובה')" oninput="setCustomValidity('')"></td>
       </tr>
       <tr class="form-inline">
           <td><label for="Currency Method">מטבע וצורה</label></td>
