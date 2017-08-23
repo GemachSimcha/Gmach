@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `gmach`.`transactions` (
   `loan_person_Cellular` VARCHAR(15) NULL DEFAULT NULL,
   `deposit_person_FirstName` VARCHAR(25) NULL DEFAULT NULL,
   `deposit_person_Cellular` VARCHAR(15) NULL DEFAULT NULL,
-  `Donor_info` varchar(250) NOT NULL,
+  `Donor_info` varchar(250) NOT NULL DEFAULT NULL,
   `Date` DATE NULL DEFAULT NULL,
   `Currency` ENUM('Shekel', 'Dollar', 'Euro', 'other') NULL DEFAULT 'Shekel',
   `Method` ENUM('Cash', 'Check', 'Transfer', 'CreditCard', 'HoraatKeva') NULL DEFAULT 'Cash',
