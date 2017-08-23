@@ -38,9 +38,7 @@ CREATE TABLE IF NOT EXISTS `gmach`.`deposit` (
   INDEX `fk_deposit_person1_idx` (`person_FirstName` ASC, `person_Cellular` ASC),
   CONSTRAINT `fk_deposit_person1`
     FOREIGN KEY (`person_FirstName` , `person_Cellular`)
-    REFERENCES `gmach`.`person` (`FirstName` , `Cellular`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `gmach`.`person` (`FirstName` , `Cellular`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -66,9 +64,7 @@ CREATE TABLE IF NOT EXISTS `gmach`.`loan` (
   INDEX `fk_loan_person_idx` (`person_FirstName` ASC, `person_Cellular` ASC),
   CONSTRAINT `fk_loan_person`
     FOREIGN KEY (`person_FirstName` , `person_Cellular`)
-    REFERENCES `gmach`.`person` (`FirstName` , `Cellular`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `gmach`.`person` (`FirstName` , `Cellular`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 85
 DEFAULT CHARACTER SET = utf8;
@@ -95,14 +91,10 @@ CREATE TABLE IF NOT EXISTS `gmach`.`transactions` (
   INDEX `fk_transactions_loan1_idx` (`loan_person_FirstName` ASC, `loan_person_Cellular` ASC),
   CONSTRAINT `fk_transactions_deposit1`
     FOREIGN KEY (`deposit_person_FirstName` , `deposit_person_Cellular`)
-    REFERENCES `gmach`.`deposit` (`person_FirstName` , `person_Cellular`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `gmach`.`deposit` (`person_FirstName` , `person_Cellular`),
   CONSTRAINT `fk_transactions_loan1`
     FOREIGN KEY (`loan_person_FirstName` , `loan_person_Cellular`)
-    REFERENCES `gmach`.`loan` (`person_FirstName` , `person_Cellular`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    REFERENCES `gmach`.`loan` (`person_FirstName` , `person_Cellular`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 382
 DEFAULT CHARACTER SET = utf8;

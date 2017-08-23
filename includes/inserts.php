@@ -22,7 +22,6 @@ if (isset($_POST['loan_submit'])) {
         // update 'person' folder
     $person_folder_insert = "UPDATE person SET SumOfLoans = '".$All_Loans."'  WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
     $person_folder_query = mysqli_query($mysqli,$person_folder_insert);
-    $person_folder_query->close;
     // INSERT INTO 'LOAN'  FOLDER 
     $loan_folder_insert = "INSERT INTO Loan (Person_FirstName, Person_Cellular, TotalLoan, Currency, Method, DateOfLoan, DateOfFinalPayment, Areivim, NumberOfPayments) VALUES (?,?,?,?,?,?,?,?,?)";
     $loan_folder_stmt = $mysqli->prepare($loan_folder_insert);
@@ -40,6 +39,7 @@ if (isset($_POST['loan_submit'])) {
     //CLOSE EXECUTE
     $loan_folder_stmt->close();
     $loan_transaction_stmt->close();
+    header('location: index.php');
 }
 
 if (isset($_POST['repay_submit'])) {
@@ -48,6 +48,7 @@ if (isset($_POST['repay_submit'])) {
         // update SumOfLoans
     // UPDATE 'loan' FOLDER
     // INSERT repay into 'transaction' folder
+    header('location: index.php');
 }
 
 if (isset($_POST['deposit_submit'])) {
@@ -56,6 +57,7 @@ if (isset($_POST['deposit_submit'])) {
         // update SumOfDeposits
     // INSERT INTO 'deposit' FOLDER
     // INSERT deposit into 'transaction' folder
+    header('location: index.php');
 }
 
 if (isset($_POST['withdrawal_submit'])) {
@@ -64,6 +66,7 @@ if (isset($_POST['withdrawal_submit'])) {
         // update SumOfDeposits
     // UPDATE 'deposit' FOLDER
     // INSERT withdrawal into 'transaction' folder
+    header('location: index.php');
 }
 if (isset($_POST['donation_submit'])) {
     // INSERT donation into 'transaction' folder
@@ -73,6 +76,7 @@ if (isset($_POST['donation_submit'])) {
     $deposit_transaction_stmt->bind_param("sssss", $Donor, $DateOfLoan, $Currency, $Method, $TotalDonation);
     $deposit_transaction_stmt->execute();
     $deposit_transaction_stmt->close();
+    header('location: index.php');
 }
 
 if (isset($_POST['newloaner_submit'])) {   // if NEWLOANER tab is submitted
