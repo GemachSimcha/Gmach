@@ -23,15 +23,16 @@ if (isset($_POST['loan_submit'])) {
     $person_folder_update = "UPDATE person SET SumOfLoans = '".$All_Loans."'  WHERE FirstName ='".$firstname."' AND Cellular = '".$cellphone."'";
     $person_folder_query = mysqli_query($mysqli,$person_folder_update);
     // INSERT INTO 'LOAN'  FOLDER 
-        // first check if loaner in folder then UPDATE not INSERT
-    $loan_folder_select = "SELECT NumberOfPayments, Areivim, transactions, isActive FROM loan WHERE person_FirstName = '".$firstname." ' AND person_Cellular = '".$cellphone."' ";
+        // if loaner exists in folder then UPDATE not INSERT
+    $loan_folder_select = "SELECT * FROM loan WHERE person_FirstName = '".$firstname." ' AND person_Cellular = '".$cellphone."' ";
     $find_loaner = $mysqli->query($loan_folder_select);
-    if ($found_loaner = $find_loaner->fetch_array(MYSQLI_NUM)) {
-        if ($found_loaner[3] == 1) { // if there is a current loan
-            $NumberOfPayments = $found_loaner[0] + $NumberOfPayments;
-            $Areivim = $found_loaner[1] . " " . $Areivim;
+    $found_loaner = $find_loaner->fetch_array(MYSQLI_NUM);
+    if ($found_loaner[3]) {
+        if ($found_loaner[11] == 1) { // if there is a current loan
+            $NumberOfPayments = $found_loaner[9] + $NumberOfPayments;
+            $Areivim = $found_loaner[8] . " " . $Areivim;
         }
-        $previous_transactions = $found_loaner[2];
+        $previous_transactions = $found_loaner[10];
         /****
             This is not ideal - We should show client all original loan info, and client edits before we overwrite, at the moment info gets overwritten
         */
@@ -44,13 +45,12 @@ if (isset($_POST['loan_submit'])) {
         $loan_folder_stmt->bind_param("sssssssss", $firstname, $cellphone, $TotalLoan, $Currency, $Method, $DateOfLoan, $DateOfFinalPayment, $Areivim, $NumberOfPayments);
         if(  $loan_folder_stmt->execute()) {    } else {
             $error = $mysqli->errno . ' ' . $mysqli->error;
-            echo $error; // 1054 Unknown column 'foo' in 'field list'
+            echo $error;
         }
         $loan_folder_stmt->close();
     }
         // INSERT loan transaction into 'TRANSACTION' FOLDER
     $TotalLoan = -$TotalLoan;
-    /*INSERT INTO `transactions` (`idTransactions`, `loan_person_FirstName`, `loan_person_Cellular`, `deposit_person_FirstName`, `deposit_person_Cellular`, `Donor_info`, `Date`, `Currency`, `Method`, `Amount`, `Explaination`, `confirmed`) VALUES (NULL, 'a', '1', NULL, NULL, '', NULL, 'Shekel', 'Cash', '6', 'Loan', 'yes')*/
     $loan_transaction_insert = "INSERT INTO transactions (loan_person_FirstName, loan_person_Cellular, Date, Currency, Method, Amount, Explaination, confirmed) VALUES (?, ?, ?, ?, ?, ?, 'Loan', 'yes')";
     $loan_transaction_stmt = $mysqli->prepare($loan_transaction_insert);
     $loan_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfLoan, $Currency, $Method, $TotalLoan);
