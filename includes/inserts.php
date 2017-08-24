@@ -24,10 +24,19 @@ if (isset($_POST['loan_submit'])) {
     $person_folder_query = mysqli_query($mysqli,$person_folder_update);
     // INSERT INTO 'LOAN'  FOLDER 
         // first check if loaner in folder then UPDATE not INSERT
-    $loan_folder_select = "SELECT TotalLoan FROM loan WHERE person_FirstName = '".$firstname." ' AND person_Cellular = '".$cellphone."' ";
+    $loan_folder_select = "SELECT NumberOfPayments, Areivim, transactions, isActive FROM loan WHERE person_FirstName = '".$firstname." ' AND person_Cellular = '".$cellphone."' ";
     $find_loaner = $mysqli->query($loan_folder_select);
     if ($found_loaner = $find_loaner->fetch_array(MYSQLI_NUM)) {
-        $loan_folder_update = "UPDATE loan SET ";
+        if ($found_loaner[3] == 1) { // if there is a current loan
+            $NumberOfPayments = $found_loaner[0] + $NumberOfPayments;
+            $Areivim = $found_loaner[1] . " " . $Areivim;
+        }
+        $previous_transactions = $found_loaner[2];
+        /****
+            This is not ideal - We should show client all original loan info, and client edits before we overwrite, at the moment info gets overwritten
+        */
+        $loan_folder_update = "UPDATE loan SET TotalLoan='".$All_Loans."', Currency='".$Currency."', Method='".$Method."', DateOfLoan='".$DateOfLoan."', DateOfFinalPayment='".$DateOfFinalPayment."', Areivim='".$Areivim."', NumberOfPayments='".$NumberOfPayments."' WHERE  person_FirstName ='".$firstname."' AND person_Cellular = '".$cellphone."'  ";
+        $loan_update_query = mysqli_query($mysqli,$loan_folder_update);
     }   // else INSERT
     else {
         $loan_folder_insert = "INSERT INTO `loan` (`person_FirstName`, `person_Cellular`, `TotalLoan`, `Currency`, `Method`, `DateOfLoan`, `DateOfFinalPayment`, `Areivim`, `NumberOfPayments`) VALUES (?,?,?,?,?,?,?,?,?)";
@@ -47,9 +56,10 @@ if (isset($_POST['loan_submit'])) {
     $loan_transaction_stmt->bind_param("ssssss", $firstname, $cellphone, $DateOfLoan, $Currency, $Method, $TotalLoan);
     if(  $loan_transaction_stmt->execute()) {    } else {
         $error = $mysqli->errno . ' ' . $mysqli->error;
-        echo $error; // 1054 Unknown column 'foo' in 'field list'
+        echo $error; 
     }
     $loan_transaction_stmt->close();
+    // get installment id and enter into loan folder
     // header('location: index.php');
 }
 
