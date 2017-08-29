@@ -3,9 +3,7 @@
   <script type="text/javascript" src="includes/js/jquery-ui-calendar/jquery-ui.js"></script>
   <script type="text/javascript" src="includes/js/script.js"></script>
   <script type="text/javascript" src="includes/js/validation.min.js"></script>
-  <script src="/includes/js/typeahead/js/bootstrap-typeahead.min.js" type="text/javascript"></script>
-
-
+  <script src="/includes/js/Simple-Easy-jQuery-Autocomplete-Plugin-Autocompleter/jquery.autocompleter.js"></script>
 
   </body>
 </html>

@@ -10,6 +10,8 @@ include_once("includes/inserts.php");
     <link rel="stylesheet" type="text/css" href="includes/styles/bootstrap.min.css">
     <link href="includes/styles/styles.css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="includes/js/jquery-ui-calendar/jquery-ui.css">
+    <link rel="stylesheet" href="/includes/js/Simple-Easy-jQuery-Autocomplete-Plugin-Autocompleter/jquery.autocompleter.css">
+
 	<title>גמ"ח חסדי השם</title>
 
 </head>
