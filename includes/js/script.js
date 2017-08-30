@@ -776,30 +776,30 @@ var colors =
     }
 ];
 
-// $(function () {
-//   $('#fullname').autocompleter({
-//         // marker for autocomplete matches
-//         highlightMatches: true,
+$(function () {
+  $('#fullname').autocompleter({
+        // marker for autocomplete matches
+        highlightMatches: true,
 
-//         // object to local or url to remote search
-//         source: "ajax_fetch.php",
+        // object to local or url to remote search
+        source: "ajax_fetch.php",
 
-//         // show hint
-//         hint: true,
+        // show hint
+        hint: true,
 
-//         // abort source if empty field
-//         empty: false,
+        // abort source if empty field
+        empty: false,
 
-//         // max results
-//         limit: 5,
+        // max results
+        limit: 5,
 
-//         callback: function (value, index, selected) {
-//             if (selected) {
-//                 $('.icon').css('background-color', selected.hex);
-//             }
-//         }
-//     });
-// });
+        callback: function (value, index, selected) {
+            if (selected) {
+                $('.icon').css('background-color', selected.hex);
+            }
+        }
+    });
+});
   
 
 
